@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="6dp"
+        app:cardUseCompatPadding="true"
+        tools:background="@color/gray_text">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/BusinessCardView_vRoot"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="9:5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/gray_text">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/BusinessCardView_glhImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintGuide_percent="0.3237" />
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glvImage"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        app:layout_constraintGuide_percent="0.1157" />-->
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glv2Image"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        app:layout_constraintGuide_percent="0.3153" />-->
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glh2Image"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintGuide_percent="0.6834" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/BusinessCardView_ivProfileImage"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/BusinessCardView_glh2Image"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@+id/BusinessCardView_glvImage"-->
+<!--                        app:layout_constraintRight_toRightOf="@+id/BusinessCardView_glv2Image"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glhImage"-->
+<!--                        tools:background="@tools:sample/backgrounds/scenic" />-->
+
+
+
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glh1Charge"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintGuide_percent="0.3453" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/BusinessCardView_tvCompany"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:textColor="@color/gray_text"-->
+<!--                        app:autoSizeMinTextSize="1sp"-->
+<!--                        app:autoSizeStepGranularity="0.5sp"-->
+<!--                        app:autoSizeTextType="uniform"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@+id/BusinessCardView_glv1Info"-->
+<!--                        app:layout_constraintRight_toRightOf="@+id/BusinessCardView_glv3Info"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Charge"-->
+<!--                        tools:text="Agente inmobiliario" />-->
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glv1Info"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        app:layout_constraintGuide_percent="0.4171" />-->
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glv3Info"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        app:layout_constraintGuide_percent="0.92" />-->
+
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glh1AgentName"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintGuide_percent="0.2302" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/BusinessCardView_tvName"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:autoSizeMinTextSize="8sp"-->
+<!--                        android:autoSizeStepGranularity="1sp"-->
+<!--                        android:autoSizeTextType="uniform"-->
+<!--                        android:textColor="@color/blue_text"-->
+<!--                        app:autoSizeMinTextSize="1sp"-->
+<!--                        app:autoSizeStepGranularity="0.5sp"-->
+<!--                        app:autoSizeTextType="uniform"-->
+<!--                        app:layout_constraintHeight_percent="0.1151"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@+id/BusinessCardView_glv1Info"-->
+<!--                        app:layout_constraintRight_toRightOf="@+id/BusinessCardView_glv3Info"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1AgentName"-->
+<!--                        tools:text="Rowena Ravenclaw" />-->
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glh1Phone"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintGuide_percent="0.5827" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/BusinessCardView_ivPhone"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        app:layout_constraintDimensionRatio="1:1"-->
+<!--                        app:layout_constraintHeight_default="percent"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@+id/BusinessCardView_glv1Info"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Phone"-->
+<!--                        app:srcCompat="@drawable/ic_phone_dark_blue_24dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/BusinessCardView_tvPhone"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_marginStart="4dp"-->
+<!--                        android:textColor="@color/gray_text"-->
+<!--                        app:autoSizeMinTextSize="1sp"-->
+<!--                        app:autoSizeStepGranularity="0.5sp"-->
+<!--                        app:autoSizeTextType="uniform"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/BusinessCardView_glv3Info"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/BusinessCardView_ivPhone"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Phone"-->
+<!--                        tools:text="Teléfono" />-->
+
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glh1Email"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintGuide_percent="0.6870" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/BusinessCardView_ivEmail"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        app:layout_constraintDimensionRatio="1:1"-->
+<!--                        app:layout_constraintHeight_default="percent"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@+id/BusinessCardView_glv1Info"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Email"-->
+<!--                        app:srcCompat="@drawable/ic_mail_enable_24dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/BusinessCardView_tvEmail"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_marginStart="4dp"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:textColor="@color/gray_text"-->
+<!--                        app:autoSizeMinTextSize="1sp"-->
+<!--                        app:autoSizeStepGranularity="0.5sp"-->
+<!--                        app:autoSizeTextType="uniform"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/BusinessCardView_glv3Info"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/BusinessCardView_ivEmail"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Email"-->
+<!--                        tools:text="roberto.osvaldo.salazar.manilla@gmail.com" />-->
+
+<!--                    <androidx.constraintlayout.widget.Guideline-->
+<!--                        android:id="@+id/BusinessCardView_glh1Website"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintGuide_percent="0.7985" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/BusinessCardView_ivWebSite"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        app:layout_constraintDimensionRatio="1:1"-->
+<!--                        app:layout_constraintHeight_default="percent"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintLeft_toLeftOf="@+id/BusinessCardView_glv1Info"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Website"-->
+<!--                        app:srcCompat="@drawable/ic_web_dark_blue_24dp" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/BusinessCardView_tvWebsite"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_marginStart="4dp"-->
+<!--                        android:layout_marginTop="4dp"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:textColor="@color/gray_text"-->
+<!--                        app:autoSizeMinTextSize="1sp"-->
+<!--                        app:autoSizeStepGranularity="0.5sp"-->
+<!--                        app:autoSizeTextType="uniform"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/BusinessCardView_glv3Info"-->
+<!--                        app:layout_constraintHeight_percent="0.0755"-->
+<!--                        app:layout_constraintStart_toEndOf="@id/BusinessCardView_ivWebSite"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/BusinessCardView_glh1Website"-->
+<!--                        tools:text="Website" />-->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
