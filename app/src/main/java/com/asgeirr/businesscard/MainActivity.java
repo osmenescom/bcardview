@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.asgeirr.businesscard.bcard.R;
+import com.google.gson.GsonBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -345,5 +346,13 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundImage("file:///android_asset/bg_card3.png")
                 .createBCard();
         return bCard;
+    }
+
+    public static <T>String toJson(T object){
+        return object == null ? null: new GsonBuilder().create().toJson(object, object.getClass());
+    }
+
+    public static <T>T toObject(String json, Class clazz){
+        return json == null ? null: (T) new GsonBuilder().create().fromJson(json, clazz);
     }
 }

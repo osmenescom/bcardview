@@ -79,7 +79,7 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putWebSite() {
-        if(bCard.getWebSite()==null || (bCard.getWebSite().getWidth()==0 && bCard.getWebSite().getHeight()==0))
+        if(bCard.getWebSite()==null || TextUtils.isEmpty(bCard.getWebSite().getText())|| (bCard.getWebSite().getWidth()==0 && bCard.getWebSite().getHeight()==0))
             return;
         itvWebSite =new IconTextView(getContext());
         itvWebSite.setElem(bCard.getWebSite());
