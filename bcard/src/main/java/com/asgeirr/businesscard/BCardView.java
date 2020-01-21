@@ -79,7 +79,7 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putWebSite() {
-        if(bCard.getWebSite()==null || (bCard.getWebSite().getWidth()==0 && bCard.getWebSite().getHeight()==0))
+        if(bCard.getWebSite()==null || TextUtils.isEmpty(bCard.getWebSite().getText())|| (bCard.getWebSite().getWidth()==0 && bCard.getWebSite().getHeight()==0))
             return;
         itvWebSite =new IconTextView(getContext());
         itvWebSite.setElem(bCard.getWebSite());
@@ -186,7 +186,7 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     public LayoutParams getLayoutParams(Elem elem){
-        LayoutParams layoutParams= new LayoutParams(elem.getHeight()==0? WRAP_CONTENT:(int)(elem.getWidth()*widthCard)/ 100, (int)(elem.getHeight()*heightCard)/100);
+        LayoutParams layoutParams= new LayoutParams(elem.getWidth()==0? WRAP_CONTENT:(int)(elem.getWidth()*widthCard)/ 100, (int)(elem.getHeight()*heightCard)/100);
         layoutParams.leftMargin=(int)(elem.getxPosition()*widthCard)/100;
         layoutParams.topMargin=(int)(elem.getyPosition()*heightCard)/100;
         return layoutParams;
