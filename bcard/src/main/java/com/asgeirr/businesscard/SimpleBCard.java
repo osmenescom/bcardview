@@ -1,6 +1,6 @@
 package com.asgeirr.businesscard;
 
-public class BCard {
+public class SimpleBCard {
     private String countryCode;
     private String backgroundImage;
     private String cardThumbnail;
@@ -13,7 +13,7 @@ public class BCard {
     private Elem workPosition;
     private Elem logo;
 
-    public BCard(String countryCode, String backgroundImage, String cardThumbnail, Elem name, Elem email, Elem lastName, Elem whatsApp, Elem companyName, Elem webSite, Elem workPosition, Elem logo) {
+    public SimpleBCard(String countryCode, String backgroundImage, String cardThumbnail, Elem name, Elem email, Elem lastName, Elem whatsApp, Elem companyName, Elem webSite, Elem workPosition, Elem logo) {
         this.countryCode = countryCode;
         this.backgroundImage = backgroundImage;
         this.cardThumbnail = cardThumbnail;

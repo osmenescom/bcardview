@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         bCardView5.load(createDummyBCard5());
     }
 
-    private BCard createDummyBCard1(){
-        BCard bCard= new BCardBuilder()
+    private SimpleBCard createDummyBCard1(){
+        SimpleBCard simpleBCard = new BCardBuilder()
                 .setLogo(new ElemBuilder()
                     .setWidth(19.96f)
                     .setHeight(35.97f)
@@ -89,11 +89,11 @@ public class MainActivity extends AppCompatActivity {
                         .setFont("7")
                         .createElem())
                 .createBCard();
-        return bCard;
+        return simpleBCard;
     }
 
-    private BCard createDummyBCard2(){
-        BCard bCard= new BCardBuilder()
+    private SimpleBCard createDummyBCard2(){
+        SimpleBCard simpleBCard = new BCardBuilder()
                 .setLogo(new ElemBuilder()
                     .setWidth(19.96f)
                     .setHeight(35.97f)
@@ -153,11 +153,11 @@ public class MainActivity extends AppCompatActivity {
                         .setFont("7")
                         .createElem())
                 .createBCard();
-        return bCard;
+        return simpleBCard;
     }
 
-    private BCard createDummyBCard3(){
-        BCard bCard= new BCardBuilder()
+    private SimpleBCard createDummyBCard3(){
+        SimpleBCard simpleBCard = new BCardBuilder()
                 .setLogo(new ElemBuilder()
                         .setWidth(19.96f)
                         .setHeight(35.97f)
@@ -218,11 +218,11 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setBackgroundImage("file:///android_asset/bg_card1.png")
                 .createBCard();
-        return bCard;
+        return simpleBCard;
     }
 
-    private BCard createDummyBCard4(){
-        BCard bCard= new BCardBuilder()
+    private SimpleBCard createDummyBCard4(){
+        SimpleBCard simpleBCard = new BCardBuilder()
                 .setLogo(new ElemBuilder()
                         .setWidth(13.77f)
                         .setHeight(24.82f)
@@ -283,11 +283,11 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setBackgroundImage("file:///android_asset/bg_card2.png")
                 .createBCard();
-        return bCard;
+        return simpleBCard;
     }
 
-    private BCard createDummyBCard5(){
-        BCard bCard= new BCardBuilder()
+    private SimpleBCard createDummyBCard5(){
+        SimpleBCard simpleBCard = new BCardBuilder()
                 .setLogo(new ElemBuilder()
                         .setWidth(13.77f)
                         .setHeight(24.82f)
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setBackgroundImage("file:///android_asset/bg_card3.png")
                 .createBCard();
-        return bCard;
+        return simpleBCard;
     }
 
     public static <T>String toJson(T object){
@@ -362,17 +362,17 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.Main_btnChange:
-                BCard bCard=createDummyBCard1();
-                bCard.getName().setText("Oscar");
-                bCard.getWorkPosition().setText("Prueba");
-                bCard.getWhatsApp().setText("525554121666525554121666");
-                bCard.getEmail().setText("osmenescom@gmail.com");
-                bCard.getWebSite().setText("www.google.com.mx");
-                bCardView1.load(bCard);
-                bCardView2.load(bCard);
-                bCardView3.load(bCard);
-                bCardView4.load(bCard);
-                bCardView5.load(bCard);
+                SimpleBCard simpleBCard =createDummyBCard1();
+                simpleBCard.getName().setText("Oscar");
+                simpleBCard.getWorkPosition().setText("Prueba");
+                simpleBCard.getWhatsApp().setText("525554121666525554121666");
+                simpleBCard.getEmail().setText("osmenescom@gmail.com");
+                simpleBCard.getWebSite().setText("www.google.com.mx");
+                bCardView1.load(simpleBCard);
+                bCardView2.load(simpleBCard);
+                bCardView3.load(simpleBCard);
+                bCardView4.load(simpleBCard);
+                bCardView5.load(simpleBCard);
                 break;
         }
     }

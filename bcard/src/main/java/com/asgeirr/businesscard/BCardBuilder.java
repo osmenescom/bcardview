@@ -68,7 +68,7 @@ public class BCardBuilder {
         return this;
     }
 
-    public BCard createBCard() {
-        return new BCard(countryCode, backgroundImage, cardThumbnail, name, email, lastName, whatsApp, companyName, webSite, workPosition, logo);
+    public SimpleBCard createBCard() {
+        return new SimpleBCard(countryCode, backgroundImage, cardThumbnail, name, email, lastName, whatsApp, companyName, webSite, workPosition, logo);
     }
 }
