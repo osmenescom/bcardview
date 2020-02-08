@@ -1,10 +1,13 @@
 package com.asgeirr.businesscard;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -39,6 +42,18 @@ public class IconTextView extends ConstraintLayout {
         tvText=findViewById(R.id.IconTextView_tvText);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if(getHeight()>0)
+            updateView();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
     public void setElem(Elem elem) {
         text=elem.getText();
         textColor=getColorFromString(elem.getColor());
@@ -52,11 +67,11 @@ public class IconTextView extends ConstraintLayout {
     }
 
     private void updateView() {
+        ivIcon.setImageResource(iconRes);
+        ivIcon.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN);
         tvText.setText(text);
         tvText.setTextColor(textColor);
         tvText.setTypeface(font);
-        ivIcon.setImageResource(iconRes);
-        ivIcon.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN);
     }
 
     private Typeface getFontFamilyFromInt(String fontInt) {
@@ -136,5 +151,11 @@ public class IconTextView extends ConstraintLayout {
                 break;
         }
         return res;
+    }
+
+    public void setText(String text) {
+        this.text=text;
+        tvText.getLayoutParams().width=(int)(tvText.getPaint().measureText(text)+1);
+        updateView();
     }
 }

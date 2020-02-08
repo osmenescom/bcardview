@@ -1,6 +1,7 @@
 package com.asgeirr.businesscard;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,15 +10,17 @@ import com.google.gson.GsonBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
+    private BCardView bCardView1, bCardView2, bCardView3, bCardView4, bCardView5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.asgeirr.businesscard.bcard.R.layout.activity_main);
-        BCardView bCardView1=findViewById(com.asgeirr.businesscard.bcard.R.id.Main_BCard1);
-        BCardView bCardView2=findViewById(com.asgeirr.businesscard.bcard.R.id.Main_BCard2);
-        BCardView bCardView3=findViewById(com.asgeirr.businesscard.bcard.R.id.Main_BCard3);
-        BCardView bCardView4=findViewById(com.asgeirr.businesscard.bcard.R.id.Main_BCard4);
-        BCardView bCardView5=findViewById(R.id.Main_BCard5);
+        bCardView1=findViewById(R.id.Main_BCard1);
+        bCardView2=findViewById(R.id.Main_BCard2);
+        bCardView3=findViewById(R.id.Main_BCard3);
+        bCardView4=findViewById(R.id.Main_BCard4);
+        bCardView5=findViewById(R.id.Main_BCard5);
         bCardView1.load(createDummyBCard1());
         bCardView2.load(createDummyBCard2());
         bCardView3.load(createDummyBCard3());
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     .createElem())
                 .setName(new ElemBuilder()
                         .setText("Rowena Revanclaw")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(11.51f)
                         .setxPosition(41.71f)
                         .setyPosition(23.02f)
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWorkPosition(new ElemBuilder()
                         .setText("Agente inmobiliario")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(7.55f)
                         .setxPosition(41.71f)
                         .setyPosition(34.53f)
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWhatsApp(new ElemBuilder()
                         .setText("5554121666")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(7.55f)
                         .setxPosition(41.71f)
                         .setyPosition(58.27f)
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setEmail(new ElemBuilder()
                         .setText("rowe.rav@gmail.com")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(7.55f)
                         .setxPosition(41.71f)
                         .setyPosition(68.70f)
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWebSite(new ElemBuilder()
                         .setText("www.ravenclaw.com")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(7.55f)
                         .setxPosition(41.71f)
                         .setyPosition(79.85f)
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     .createElem())
                 .setName(new ElemBuilder()
                         .setText("Rowena Revanclaw")
-                        .setWidth(60.27f)
+//                        .setWidth(60.27f)
                         .setHeight(11.51f)
                         .setxPosition(33.53f)
                         .setyPosition(25.17f)
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWorkPosition(new ElemBuilder()
                         .setText("Agente inmobiliario")
-                        .setWidth(60.27f)
+//                        .setWidth(60.27f)
                         .setHeight(7.55f)
                         .setxPosition(33.53f)
                         .setyPosition(36.69f)
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWhatsApp(new ElemBuilder()
                         .setText("5554121666")
-                        .setWidth(84.43f)
+//                        .setWidth(84.43f)
                         .setHeight(7.55f)
                         .setxPosition(9.38f)
                         .setyPosition(59.71f)
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setEmail(new ElemBuilder()
                         .setText("rowe.rav@gmail.com")
-                        .setWidth(84.43f)
+//                        .setWidth(84.43f)
                         .setHeight(7.55f)
                         .setxPosition(9.38f)
                         .setyPosition(69.06f)
@@ -140,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWebSite(new ElemBuilder()
                         .setText("www.ravenclaw.com")
-                        .setWidth(84.43f)
+//                        .setWidth(84.43f)
                         .setHeight(7.55f)
                         .setxPosition(9.38f)
                         .setyPosition(78.41f)
@@ -354,5 +357,23 @@ public class MainActivity extends AppCompatActivity {
 
     public static <T>T toObject(String json, Class clazz){
         return json == null ? null: (T) new GsonBuilder().create().fromJson(json, clazz);
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.Main_btnChange:
+                BCard bCard=createDummyBCard1();
+                bCard.getName().setText("Oscar");
+                bCard.getWorkPosition().setText("Prueba");
+                bCard.getWhatsApp().setText("525554121666525554121666");
+                bCard.getEmail().setText("osmenescom@gmail.com");
+                bCard.getWebSite().setText("www.google.com.mx");
+                bCardView1.load(bCard);
+                bCardView2.load(bCard);
+                bCardView3.load(bCard);
+                bCardView4.load(bCard);
+                bCardView5.load(bCard);
+                break;
+        }
     }
 }

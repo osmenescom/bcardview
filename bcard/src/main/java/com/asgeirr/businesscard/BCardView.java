@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +29,7 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     private ImageView ivLogo;
     private CustomTextView ctvCompany, ctvName, ctvWorkPosition;
     private IconTextView itvWhatsApp, itvEmail, itvWebSite;
+    private IconTextView itv1WhatsApp;
     private RelativeLayout vRoot;
     private int widthCard, heightCard;
 
@@ -81,65 +83,98 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     private void putWebSite() {
         if(bCard.getWebSite()==null || TextUtils.isEmpty(bCard.getWebSite().getText())|| (bCard.getWebSite().getWidth()==0 && bCard.getWebSite().getHeight()==0))
             return;
-        itvWebSite =new IconTextView(getContext());
-        itvWebSite.setElem(bCard.getWebSite());
-        LayoutParams layoutParams=getLayoutParams(bCard.getWebSite());
-        vRoot.addView(itvWebSite, layoutParams);
+        if(itvWebSite==null) {
+            if(heightCard==0)
+                return;
+            itvWebSite = new IconTextView(getContext());
+            itvWebSite.setElem(bCard.getWebSite());
+            LayoutParams layoutParams = getLayoutParams(bCard.getWebSite());
+            vRoot.addView(itvWebSite, layoutParams);
+        }else
+            itvWebSite.setText(bCard.getWebSite().getText());
     }
 
     private void putEmail() {
         if(bCard.getEmail()==null || (bCard.getEmail().getWidth()==0 && bCard.getEmail().getHeight()==0))
             return;
-        itvEmail =new IconTextView(getContext());
-        itvEmail.setElem(bCard.getEmail());
-        LayoutParams layoutParams=getLayoutParams(bCard.getEmail());
-        vRoot.addView(itvEmail, layoutParams);
+        if(itvEmail==null) {
+            if(heightCard==0)
+                return;
+            itvEmail = new IconTextView(getContext());
+            itvEmail.setElem(bCard.getEmail());
+            LayoutParams layoutParams = getLayoutParams(bCard.getEmail());
+            vRoot.addView(itvEmail, layoutParams);
+        }else
+            itvEmail.setText(bCard.getEmail().getText());
     }
 
     private void putPhoneNumber() {
-        if(bCard.getWhatsApp()==null || (bCard.getWhatsApp().getWidth()==0 && bCard.getWhatsApp().getHeight()==0))
+        if(heightCard==0 || bCard.getWhatsApp()==null || (bCard.getWhatsApp().getWidth()==0 && bCard.getWhatsApp().getHeight()==0))
             return;
-        itvWhatsApp =new IconTextView(getContext());
-        itvWhatsApp.setElem(bCard.getWhatsApp());
-        LayoutParams layoutParams=getLayoutParams(bCard.getWhatsApp());
-        vRoot.addView(itvWhatsApp, layoutParams);
+        if(itv1WhatsApp==null) {
+            itv1WhatsApp = new IconTextView(getContext());
+            itv1WhatsApp.setElem(bCard.getWhatsApp());
+            LayoutParams layoutParams = getLayoutParams(bCard.getWhatsApp());
+            vRoot.addView(itv1WhatsApp, layoutParams);
+        }else{
+            itv1WhatsApp.setText(bCard.getWhatsApp().getText());
+        }
     }
 
     private void putWorkPosition() {
         if(bCard.getWorkPosition()==null || (bCard.getWorkPosition().getWidth()==0 && bCard.getWorkPosition().getHeight()==0))
             return;
-        ctvWorkPosition=new CustomTextView(getContext());
-        ctvWorkPosition.setElem(bCard.getWorkPosition());
-        LayoutParams layoutParams=getLayoutParams(bCard.getWorkPosition());
-        vRoot.addView(ctvWorkPosition, layoutParams);
+        if(ctvWorkPosition==null) {
+            if(heightCard==0)
+                return;
+            ctvWorkPosition = new CustomTextView(getContext());
+            ctvWorkPosition.setElem(bCard.getWorkPosition());
+            LayoutParams layoutParams = getLayoutParams(bCard.getWorkPosition());
+            vRoot.addView(ctvWorkPosition, layoutParams);
+        }else
+            ctvWorkPosition.updateText(bCard.getWorkPosition().getText());
     }
 
     private void putName() {
         if(bCard.getName()==null || (bCard.getName().getWidth()==0 && bCard.getName().getHeight()==0))
             return;
-        ctvName=new CustomTextView(getContext());
-        ctvName.setElem(bCard.getName());
-        LayoutParams layoutParams=getLayoutParams(bCard.getName());
-        vRoot.addView(ctvName, layoutParams);
+        if(ctvName==null) {
+            if(heightCard==0)
+                return;
+            ctvName = new CustomTextView(getContext());
+            ctvName.setElem(bCard.getName());
+            LayoutParams layoutParams = getLayoutParams(bCard.getName());
+            vRoot.addView(ctvName, layoutParams);
+        }else
+            ctvName.updateText(bCard.getName().getText());
     }
 
     private void putCompanyName() {
         if(bCard.getCompanyName()==null || (bCard.getCompanyName().getWidth()==0 && bCard.getCompanyName().getHeight()==0))
             return;
-        ctvCompany=new CustomTextView(getContext());
-        ctvCompany.setElem(bCard.getCompanyName());
-        LayoutParams layoutParams=getLayoutParams(bCard.getCompanyName());
-        vRoot.addView(ctvCompany, layoutParams) ;
+        if(ctvCompany==null) {
+            if(heightCard==0)
+                return;
+            ctvCompany = new CustomTextView(getContext());
+            ctvCompany.setElem(bCard.getCompanyName());
+            LayoutParams layoutParams = getLayoutParams(bCard.getCompanyName());
+            vRoot.addView(ctvCompany, layoutParams);
+        }else
+            ctvCompany.updateText(bCard.getCompanyName().getText());
     }
 
     private void putImage() {
         if(bCard.getLogo()==null || (bCard.getLogo().getWidth()==0 && bCard.getLogo().getHeight()==0))
             return;
-        ivLogo=new ImageView(getContext());
-        LayoutParams layoutParams= getLayoutParams(bCard.getLogo());
-        vRoot.addView(ivLogo, layoutParams);
-//        Glide.with(getContext()).load(new ColorDrawable(getResources().getColor(R.textColor.blue_text))).override(layoutParams.width, layoutParams.height).into(ivLogo);
-        Glide.with(getContext()).load(bCard.getLogo().getThumbnail()).override(layoutParams.width, layoutParams.height).fitCenter().into(ivLogo);
+        if(ivLogo==null) {
+            if(heightCard==0)
+                return;
+            ivLogo = new ImageView(getContext());
+            LayoutParams layoutParams = getLayoutParams(bCard.getLogo());
+            vRoot.addView(ivLogo, layoutParams);
+            Glide.with(getContext()).load(bCard.getLogo().getThumbnail()).override(layoutParams.width, layoutParams.height).fitCenter().into(ivLogo);
+        }else
+            Glide.with(getContext()).load(bCard.getLogo().getThumbnail()).override(ivLogo.getMeasuredWidth(), ivLogo.getMaxHeight()).fitCenter().into(ivLogo);
     }
 
     private void putBackground() {

@@ -109,4 +109,9 @@ public class CustomTextView extends AppCompatTextView {
         return Color.parseColor("#"+color);
     }
 
+    public void updateText(String text) {
+        this.text=text;
+        getLayoutParams().width=(int)(getPaint().measureText(text)+1);
+        updateView();
+    }
 }
