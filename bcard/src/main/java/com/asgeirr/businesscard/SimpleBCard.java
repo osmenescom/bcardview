@@ -13,6 +13,8 @@ public class SimpleBCard {
     private Elem workPosition;
     private Elem logo;
 
+    public SimpleBCard(){}
+
     public SimpleBCard(String countryCode, String backgroundImage, String cardThumbnail, Elem name, Elem email, Elem lastName, Elem whatsApp, Elem companyName, Elem webSite, Elem workPosition, Elem logo) {
         this.countryCode = countryCode;
         this.backgroundImage = backgroundImage;
