@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,17 +81,28 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putWebSite() {
-        if(simpleBCard.getWebSite()==null || TextUtils.isEmpty(simpleBCard.getWebSite().getText())|| (simpleBCard.getWebSite().getWidth()==0 && simpleBCard.getWebSite().getHeight()==0))
+        if(simpleBCard.getWebSite()==null)
             return;
         if(itvWebSite==null) {
-            if(heightCard==0)
-                return;
             itvWebSite = new IconTextView(getContext());
             itvWebSite.setElem(simpleBCard.getWebSite());
             LayoutParams layoutParams = getLayoutParams(simpleBCard.getWebSite());
             vRoot.addView(itvWebSite, layoutParams);
         }else
             itvWebSite.setText(simpleBCard.getWebSite().getText());
+        if(simpleBCard.getWebSite().getHeight()!=0 && itvWebSite.getLayoutParams().height==0){
+            updateLayoutParams(itvWebSite, simpleBCard.getWebSite());
+        }
+        itvWebSite.setVisibility(simpleBCard.getWebSite().getHeight()==0?GONE:VISIBLE);
+    }
+
+    private void updateLayoutParams(View view, Elem elem) {
+        LinearLayout.LayoutParams layoutParamsTemp=getLayoutParams(elem);
+        RelativeLayout.LayoutParams layoutParamsView= (RelativeLayout.LayoutParams) view.getLayoutParams();
+        layoutParamsView.height=layoutParamsTemp.height;
+        layoutParamsView.width=layoutParamsTemp.width;
+        layoutParamsView.topMargin=layoutParamsTemp.topMargin;
+        layoutParamsView.leftMargin=layoutParamsTemp.leftMargin;
     }
 
     private void putEmail() {

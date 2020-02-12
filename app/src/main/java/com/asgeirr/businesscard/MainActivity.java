@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 public class MainActivity extends AppCompatActivity {
 
     private BCardView bCardView1, bCardView2, bCardView3, bCardView4, bCardView5;
+    private boolean hideWebsite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,8 +208,8 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWebSite(new ElemBuilder()
                         .setText("www.ravenclaw.com")
-                        .setWidth(38.72f)
-                        .setHeight(7.19f)
+//                        .setWidth(38.72f)
+                        .setHeight(7.19f)//
                         .setxPosition(7.18f)
                         .setyPosition(90.28f)
                         .setColor("707070")
@@ -272,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWebSite(new ElemBuilder()
                         .setText("www.ravenclaw.com")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(7.19f)
                         .setxPosition(9.58f)
                         .setyPosition(90.64f)
@@ -337,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
                         .createElem())
                 .setWebSite(new ElemBuilder()
                         .setText("www.ravenclaw.com")
-                        .setWidth(50.89f)
+//                        .setWidth(50.89f)
                         .setHeight(7.55f)
                         .setxPosition(41.91f)
                         .setyPosition(76.25f)
@@ -368,6 +369,11 @@ public class MainActivity extends AppCompatActivity {
                 simpleBCard.getWhatsApp().setText("525554121666525554121666");
                 simpleBCard.getEmail().setText("osmenescom@gmail.com");
                 simpleBCard.getWebSite().setText("www.google.com.mx");
+                if(hideWebsite) {
+                    hideWebsite=false;
+                    simpleBCard.getWebSite().setHeight(0);
+                }else
+                    hideWebsite=true;
                 bCardView1.load(simpleBCard);
                 bCardView2.load(simpleBCard);
                 bCardView3.load(simpleBCard);
