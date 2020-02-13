@@ -1,6 +1,8 @@
 package com.asgeirr.businesscard;
 
-public class SimpleBCard {
+import androidx.annotation.NonNull;
+
+public class SimpleBCard implements Cloneable{
     private String countryCode;
     private String backgroundImage;
     private String cardThumbnail;
@@ -115,5 +117,33 @@ public class SimpleBCard {
 
     public void setLogo(Elem logo) {
         this.logo = logo;
+    }
+
+    @NonNull
+    @Override
+    public SimpleBCard clone() {
+        try {
+            SimpleBCard simpleBCard=(SimpleBCard) super.clone();
+            if(name!=null)
+                simpleBCard.setName(name.clone());
+            if(email!=null)
+                simpleBCard.setEmail(email.clone());
+            if(lastName!=null)
+                simpleBCard.setLastName(lastName.clone());
+            if((whatsApp!=null))
+                simpleBCard.setWhatsApp(whatsApp.clone());
+            if(companyName!=null)
+                simpleBCard.setCompanyName(companyName.clone());
+            if(webSite!=null)
+                simpleBCard.setWebSite(webSite.clone());
+            if(workPosition!=null)
+                simpleBCard.setWorkPosition(workPosition.clone());
+            if(logo!=null)
+                simpleBCard.setLogo(logo.clone());
+            return simpleBCard;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

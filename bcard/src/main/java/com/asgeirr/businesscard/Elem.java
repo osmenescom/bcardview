@@ -1,6 +1,8 @@
 package com.asgeirr.businesscard;
 
-public class Elem {
+import androidx.annotation.NonNull;
+
+public class Elem implements Cloneable{
     private String text;
     private String thumbnail;
     private float xPosition;
@@ -160,5 +162,16 @@ public class Elem {
         elem.setFont("7");
         elem.setColor("000000");
         return elem;
+    }
+
+    @NonNull
+    @Override
+    protected Elem clone() {
+        try {
+            return (Elem) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
