@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SimpleBCard createDummyBCard1(){
         SimpleBCard simpleBCard = new BCardBuilder()
+                .setCountryCode("52")
                 .setLogo(new ElemBuilder()
                     .setWidth(19.96f)
                     .setHeight(35.97f)
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SimpleBCard createDummyBCard2(){
         SimpleBCard simpleBCard = new BCardBuilder()
+                .setCountryCode("52")
                 .setLogo(new ElemBuilder()
                     .setWidth(19.96f)
                     .setHeight(35.97f)
@@ -159,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SimpleBCard createDummyBCard3(){
         SimpleBCard simpleBCard = new BCardBuilder()
+                .setCountryCode("52")
                 .setLogo(new ElemBuilder()
                         .setWidth(19.96f)
                         .setHeight(35.97f)
@@ -224,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SimpleBCard createDummyBCard4(){
         SimpleBCard simpleBCard = new BCardBuilder()
+                .setCountryCode("52")
                 .setLogo(new ElemBuilder()
                         .setWidth(13.77f)
                         .setHeight(24.82f)
@@ -289,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SimpleBCard createDummyBCard5(){
         SimpleBCard simpleBCard = new BCardBuilder()
+                .setCountryCode("52")
                 .setLogo(new ElemBuilder()
                         .setWidth(13.77f)
                         .setHeight(24.82f)
@@ -366,7 +371,8 @@ public class MainActivity extends AppCompatActivity {
                 SimpleBCard simpleBCard =createDummyBCard1();
                 simpleBCard.getName().setText("Oscar");
                 simpleBCard.getWorkPosition().setText("Prueba");
-                simpleBCard.getWhatsApp().setText("525554121666525554121666");
+                simpleBCard.setCountryCode("230");
+                simpleBCard.getWhatsApp().setText("56748593");
                 simpleBCard.getEmail().setText("osmenescom@gmail.com");
                 simpleBCard.getWebSite().setText("www.google.com.mx");
                 if(hideWebsite) {

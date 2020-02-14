@@ -122,13 +122,15 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     private void putPhoneNumber() {
         if(heightCard==0 || simpleBCard.getWhatsApp()==null || (simpleBCard.getWhatsApp().getWidth()==0 && simpleBCard.getWhatsApp().getHeight()==0))
             return;
+        Elem whatsAppTemp=simpleBCard.getWhatsApp();
+        whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode())?simpleBCard.getCountryCode():"")+simpleBCard.getWhatsApp().getText());
         if(itv1WhatsApp==null) {
             itv1WhatsApp = new IconTextView(getContext());
-            itv1WhatsApp.setElem(simpleBCard.getWhatsApp());
+            itv1WhatsApp.setElem(whatsAppTemp);
             LayoutParams layoutParams = getLayoutParams(simpleBCard.getWhatsApp());
             vRoot.addView(itv1WhatsApp, layoutParams);
         }else{
-            itv1WhatsApp.setText(simpleBCard.getWhatsApp().getText());
+            itv1WhatsApp.setText(whatsAppTemp.getText());
         }
     }
 
