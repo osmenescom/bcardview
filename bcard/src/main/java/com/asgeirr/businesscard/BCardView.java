@@ -125,10 +125,10 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
         if(heightCard==0 || simpleBCard.getWhatsApp()==null)
             return;
         Elem whatsAppTemp=simpleBCard.getWhatsApp().clone();
-        if(TextUtils.isEmpty(whatsAppTemp.getText()) && TextUtils.isEmpty(simpleBCard.getCountryCode()))
-            whatsAppTemp.setText(getResources().getString(R.string.your_phone));
-        else
+        if(!TextUtils.isEmpty(whatsAppTemp.getText()) || !TextUtils.isEmpty(simpleBCard.getCountryCode()))
             whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode())?simpleBCard.getCountryCode():"")+(!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText())?simpleBCard.getWhatsApp().getText():""));
+        else
+            whatsAppTemp.setText(getResources().getString(R.string.your_phone));
         if(itvWhatsApp ==null) {
             itvWhatsApp = new IconTextView(getContext());
             itvWhatsApp.setElem(whatsAppTemp);
