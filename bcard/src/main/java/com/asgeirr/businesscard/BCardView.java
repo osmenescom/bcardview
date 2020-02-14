@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,7 +28,6 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     private ImageView ivLogo;
     private CustomTextView ctvCompany, ctvName, ctvWorkPosition;
     private IconTextView itvWhatsApp, itvEmail, itvWebSite;
-    private IconTextView itv1WhatsApp;
     private RelativeLayout vRoot;
     private int widthCard, heightCard;
 
@@ -106,32 +104,40 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putEmail() {
-        if(simpleBCard.getEmail()==null || (simpleBCard.getEmail().getWidth()==0 && simpleBCard.getEmail().getHeight()==0))
+        if(simpleBCard.getEmail()==null)
             return;
+        Elem emailTemp=simpleBCard.getEmail().clone();
+        if(TextUtils.isEmpty(emailTemp.getText()))
+            emailTemp.setText(getResources().getString(R.string.your_email));
         if(itvEmail==null) {
             if(heightCard==0)
                 return;
             itvEmail = new IconTextView(getContext());
-            itvEmail.setElem(simpleBCard.getEmail());
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getEmail());
+            itvEmail.setElem(emailTemp);
+            LayoutParams layoutParams = getLayoutParams(emailTemp);
             vRoot.addView(itvEmail, layoutParams);
         }else
-            itvEmail.setText(simpleBCard.getEmail().getText());
+            itvEmail.setText(emailTemp.getText());
+        itvEmail.setVisibility(emailTemp.getHeight()==0?GONE:VISIBLE);
     }
 
     private void putPhoneNumber() {
-        if(heightCard==0 || simpleBCard.getWhatsApp()==null || (simpleBCard.getWhatsApp().getWidth()==0 && simpleBCard.getWhatsApp().getHeight()==0))
+        if(heightCard==0 || simpleBCard.getWhatsApp()==null)
             return;
-        Elem whatsAppTemp=simpleBCard.getWhatsApp();
-        whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode())?simpleBCard.getCountryCode():"")+simpleBCard.getWhatsApp().getText());
-        if(itv1WhatsApp==null) {
-            itv1WhatsApp = new IconTextView(getContext());
-            itv1WhatsApp.setElem(whatsAppTemp);
+        Elem whatsAppTemp=simpleBCard.getWhatsApp().clone();
+        if(TextUtils.isEmpty(whatsAppTemp.getText()) && TextUtils.isEmpty(simpleBCard.getCountryCode()))
+            whatsAppTemp.setText(getResources().getString(R.string.your_phone));
+        else
+            whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode())?simpleBCard.getCountryCode():"")+(!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText())?simpleBCard.getWhatsApp().getText():""));
+        if(itvWhatsApp ==null) {
+            itvWhatsApp = new IconTextView(getContext());
+            itvWhatsApp.setElem(whatsAppTemp);
             LayoutParams layoutParams = getLayoutParams(simpleBCard.getWhatsApp());
-            vRoot.addView(itv1WhatsApp, layoutParams);
+            vRoot.addView(itvWhatsApp, layoutParams);
         }else{
-            itv1WhatsApp.setText(whatsAppTemp.getText());
+            itvWhatsApp.setText(whatsAppTemp.getText());
         }
+        itvWhatsApp.setVisibility(simpleBCard.getWhatsApp().getHeight()==0?GONE:VISIBLE);
     }
 
     private void putWorkPosition() {

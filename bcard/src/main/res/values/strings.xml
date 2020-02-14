@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleBCard</string>
+    <string name="your_email">Su correo electronico</string>
+    <string name="your_phone">Su numero de telefono</string>
 </resources>

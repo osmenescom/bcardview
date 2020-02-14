@@ -30,6 +30,7 @@
         android:id="@+id/IconTextView_tvText"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:gravity="center_vertical"
         app:autoSizeMaxTextSize="300dp"
         app:autoSizeMinTextSize="1dp"
         app:autoSizeStepGranularity="1dp"
