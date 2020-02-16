@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.ColorInt;
@@ -22,6 +23,7 @@ public class IconTextView extends ConstraintLayout {
 
     private ImageView ivIcon;
     private AppCompatTextView tvText;
+    private View vSpace;
     String text;
     @DrawableRes
     int iconRes;
@@ -39,6 +41,7 @@ public class IconTextView extends ConstraintLayout {
         LayoutInflater inflater=(LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.layout_icon_text_view, this);
         ivIcon=findViewById(R.id.IconTextView_ivIcon);
+        vSpace=findViewById(R.id.IconTextView_vSpace);
         tvText=findViewById(R.id.IconTextView_tvText);
     }
 
@@ -72,6 +75,14 @@ public class IconTextView extends ConstraintLayout {
         tvText.setText(text);
         tvText.setTextColor(textColor);
         tvText.setTypeface(font);
+        tvText.getLayoutParams().width=(int)(tvText.getPaint().measureText(text)+1);
+        tvText.invalidate();
+        tvText.requestLayout();
+        if(getLayoutParams()==null)
+            return;
+        getLayoutParams().width=ivIcon.getLayoutParams().width+vSpace.getLayoutParams().width+tvText.getLayoutParams().width;
+        invalidate();
+        requestLayout();
     }
 
     private Typeface getFontFamilyFromInt(String fontInt) {
@@ -155,7 +166,6 @@ public class IconTextView extends ConstraintLayout {
 
     public void setText(String text) {
         this.text=text;
-        tvText.getLayoutParams().width=(int)(tvText.getPaint().measureText(text)+1);
         updateView();
     }
 }
