@@ -1,6 +1,7 @@
 package com.asgeirr.businesscard;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Elem implements Cloneable{
     private String text;
@@ -173,5 +174,27 @@ public class Elem implements Cloneable{
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null ) return false;
+        if (!(obj instanceof Elem)) return false;
+        Elem elem = (Elem) obj;
+        return angle == elem.getAngle() &&
+                bold == elem.isBold() &&
+                CommonUtils.equals(color, elem.getColor()) &&
+                CommonUtils.equals(font, elem.getFont()) &&
+                CommonUtils.equals(fontSize, elem.getFontSize()) &&
+                height == elem.getHeight() &&
+                CommonUtils.equals(iconColor, elem.getIconColor()) &&
+                iconType == elem.getIconType() &&
+                italic == elem.isItalic() &&
+                CommonUtils.equals(text, elem.getText()) &&
+                CommonUtils.equals(thumbnail, elem.getThumbnail()) &&
+                underline == elem.isUnderline() &&
+                width == elem.getWidth() &&
+                xPosition == elem.getxPosition() &&
+                yPosition == elem.getyPosition();
     }
 }
