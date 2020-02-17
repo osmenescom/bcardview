@@ -6,6 +6,13 @@ public class GeoPt {
     private float latitude;
     private float longitude;
 
+    public GeoPt(){}
+
+    public GeoPt(float latitude, float longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public float getLatitude() {
         return latitude;
     }
