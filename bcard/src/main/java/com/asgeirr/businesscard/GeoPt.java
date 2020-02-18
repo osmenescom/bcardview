@@ -2,7 +2,7 @@ package com.asgeirr.businesscard;
 
 import androidx.annotation.NonNull;
 
-public class GeoPt {
+public class GeoPt implements Cloneable{
     private float latitude;
     private float longitude;
 
