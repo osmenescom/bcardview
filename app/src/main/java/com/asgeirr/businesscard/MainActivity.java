@@ -367,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.Main_btnChange:
                 SimpleBCard simpleBCard =createDummyBCard1();
+                simpleBCard.setBackgroundImage("");
                 simpleBCard.getName().setText("Oscar");
                 simpleBCard.getWorkPosition().setText("Prueba");
                 simpleBCard.setCountryCode("230");

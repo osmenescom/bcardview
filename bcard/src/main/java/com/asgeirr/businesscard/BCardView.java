@@ -56,6 +56,20 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        updateView();
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        widthCard =vRoot.getMeasuredWidth();
+        heightCard=vRoot.getMeasuredHeight();
+        updateView();
+    }
+
+    @Override
     public void onClick(View v) {
 
     }
@@ -66,7 +80,7 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void updateView() {
-        if(simpleBCard ==null)
+        if(widthCard==0 || heightCard==0 || simpleBCard ==null)
             return;
         putBackground();
         putImage();
@@ -183,8 +197,10 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putImage() {
-        if(simpleBCard.getLogo()==null || (simpleBCard.getLogo().getWidth()==0 && simpleBCard.getLogo().getHeight()==0))
+        if(simpleBCard.getLogo()==null || (simpleBCard.getLogo().getWidth()==0 && simpleBCard.getLogo().getHeight()==0)) {
+            Glide.with(getContext()).clear(ivLogo);
             return;
+        }
         if(ivLogo==null) {
             if(heightCard==0)
                 return;
@@ -197,8 +213,10 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putBackground() {
-        if(TextUtils.isEmpty(simpleBCard.getBackgroundImage()))
+        if(TextUtils.isEmpty(simpleBCard.getBackgroundImage())) {
+            vRoot.setBackground(null);
             return;
+        }
         if(URLUtil.isAssetUrl(simpleBCard.getBackgroundImage())){
 
             Glide.with(getContext()).asBitmap().load(Uri.parse(simpleBCard.getBackgroundImage())).into(new CustomTarget<Bitmap>() {

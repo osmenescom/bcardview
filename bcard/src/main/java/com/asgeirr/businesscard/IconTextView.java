@@ -48,7 +48,7 @@ public class IconTextView extends ConstraintLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(getHeight()>0)
+        if(getMeasuredHeight()>0)
             updateView();
     }
 
@@ -80,7 +80,7 @@ public class IconTextView extends ConstraintLayout {
         tvText.requestLayout();
         if(getLayoutParams()==null)
             return;
-        getLayoutParams().width=ivIcon.getLayoutParams().width+vSpace.getLayoutParams().width+tvText.getLayoutParams().width;
+        getLayoutParams().width=ivIcon.getMeasuredWidth()+vSpace.getMeasuredWidth()+tvText.getMeasuredWidth();
         invalidate();
         requestLayout();
     }
