@@ -198,7 +198,8 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
 
     private void putImage() {
         if(simpleBCard.getLogo()==null || (simpleBCard.getLogo().getWidth()==0 && simpleBCard.getLogo().getHeight()==0)) {
-            Glide.with(getContext()).clear(ivLogo);
+            if(ivLogo!=null)
+                Glide.with(getContext()).clear(ivLogo);
             return;
         }
         if(ivLogo==null) {
