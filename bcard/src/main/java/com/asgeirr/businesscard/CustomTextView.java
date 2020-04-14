@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
@@ -22,6 +23,16 @@ public class CustomTextView extends AppCompatTextView {
 
     public CustomTextView(Context context) {
         super(context);
+        initControl();
+    }
+
+    public CustomTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initControl();
+    }
+
+    public CustomTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         initControl();
     }
 

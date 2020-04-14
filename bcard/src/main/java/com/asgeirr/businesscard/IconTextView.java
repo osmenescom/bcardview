@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +35,16 @@ public class IconTextView extends ConstraintLayout {
 
     public IconTextView(Context context) {
         super(context);
+        initControl();
+    }
+
+    public IconTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initControl();
+    }
+
+    public IconTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         initControl();
     }
 
