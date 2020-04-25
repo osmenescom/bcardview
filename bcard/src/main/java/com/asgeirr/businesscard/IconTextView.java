@@ -7,9 +7,9 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +19,7 @@ import androidx.annotation.DrawableRes;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.widget.TextViewCompat;
 
 public class IconTextView extends ConstraintLayout {
 
@@ -54,13 +55,21 @@ public class IconTextView extends ConstraintLayout {
         ivIcon=findViewById(R.id.IconTextView_ivIcon);
         vSpace=findViewById(R.id.IconTextView_vSpace);
         tvText=findViewById(R.id.IconTextView_tvText);
+        tvText.setAutoSizeTextTypeWithDefaults(TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        tvText.setAutoSizeTextTypeUniformWithConfiguration(1, 300, 1, TypedValue.COMPLEX_UNIT_SP);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(getMeasuredHeight()>0)
-            updateView();
+//        if(getMeasuredHeight()>0)
+//            updateView();
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        updateView();
     }
 
     @Override
@@ -77,23 +86,40 @@ public class IconTextView extends ConstraintLayout {
         font=getFontFamilyFromInt(elem.getFont());
         iconRes=getElementIcon(elem);
         iconColor=getColorFromString(elem.getIconColor());
-        updateView();
+//        updateView();
     }
 
     private void updateView() {
+        if (text == null)
+            return;
         ivIcon.setImageResource(iconRes);
         ivIcon.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN);
         tvText.setText(text);
         tvText.setTextColor(textColor);
         tvText.setTypeface(font);
-        tvText.getLayoutParams().width=(int)(tvText.getPaint().measureText(text)+1);
-        tvText.invalidate();
-        tvText.requestLayout();
-        if(getLayoutParams()==null)
-            return;
-        getLayoutParams().width=ivIcon.getMeasuredWidth()+vSpace.getMeasuredWidth()+tvText.getMeasuredWidth();
-        invalidate();
-        requestLayout();
+        tvText.setTextSize(getFitFontSize(tvText.getMeasuredWidth(), tvText.getMeasuredHeight(), tvText.getPaint(), font, text));
+//        tvText.getLayoutParams().width=(int)(tvText.getPaint().measureText(text));
+//        tvText.invalidate();
+//        tvText.requestLayout();
+//        if(getLayoutParams()==null)
+//            return;
+//        getLayoutParams().width=ivIcon.getMeasuredWidth()+vSpace.getMeasuredWidth()+tvText.getMeasuredWidth();
+//        invalidate();
+//        requestLayout();
+    }
+
+    float getFitFontSize(float boundWidth, float boundHeight, Paint paint, Typeface typeface, String text) {
+        float baseTextSize = 1000000f;
+        paint.setTextSize(baseTextSize);
+        paint.setTypeface(typeface);
+        Rect rect = new Rect();
+
+        paint.getTextBounds(text, 0, text.length(), rect);
+        float sizeW = boundWidth * baseTextSize / (float) (rect.width());
+        float sizeH = boundHeight * baseTextSize / (float) (rect.height());
+
+//        return sizeW < sizeH ? sizeW : sizeH;
+        return sizeH;
     }
 
     private Typeface getFontFamilyFromInt(String fontInt) {
@@ -175,7 +201,7 @@ public class IconTextView extends ConstraintLayout {
         return res;
     }
 
-    public void setText(String text) {
+    public void updateText(String text) {
         this.text=text;
         updateView();
     }

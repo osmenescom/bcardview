@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -25,7 +24,7 @@ import com.bumptech.glide.request.transition.Transition;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
-public class BCardView extends LinearLayout implements View.OnClickListener {
+public class BCardView extends RelativeLayout implements View.OnClickListener {
     private SimpleBCard simpleBCard;
     private ImageView ivLogo;
     private CustomTextView ctvCompany, ctvName, ctvWorkPosition;
@@ -93,7 +92,7 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void updateView() {
-        if(widthCard==0 || heightCard==0 || simpleBCard ==null)
+        if (simpleBCard == null || widthCard == 0 || heightCard == 0)
             return;
         putBackground();
         putImage();
@@ -106,124 +105,120 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
     }
 
     private void putWebSite() {
-        if(simpleBCard.getWebSite()==null)
-            return;
-        if(itvWebSite==null) {
-            itvWebSite = new IconTextView(getContext());
-            itvWebSite.setElem(simpleBCard.getWebSite());
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getWebSite());
-            vRoot.addView(itvWebSite, layoutParams);
-        }else
-            itvWebSite.setText(simpleBCard.getWebSite().getText());
-        if(simpleBCard.getWebSite().getHeight()!=0 && itvWebSite.getLayoutParams().height==0){
-            updateLayoutParams(itvWebSite, simpleBCard.getWebSite());
+        if (simpleBCard.getWebSite() != null && simpleBCard.getWebSite().getHeight() > 0) {
+            if (TextUtils.isEmpty(simpleBCard.getWebSite().getText()))
+                simpleBCard.getWebSite().setText(getResources().getString(R.string.your_website));
+            if (itvWebSite == null) {
+                itvWebSite = new IconTextView(getContext());
+                itvWebSite.setElem(simpleBCard.getWebSite());
+                vRoot.addView(itvWebSite, getLayoutParams(simpleBCard.getWebSite()));
+            } else
+                itvWebSite.updateText(simpleBCard.getWebSite().getText());
+            itvWebSite.setVisibility(VISIBLE);
+        } else {
+            if (itvWebSite != null)
+                itvWebSite.setVisibility(GONE);
         }
-        itvWebSite.setVisibility(simpleBCard.getWebSite().getHeight()==0?GONE:VISIBLE);
-    }
-
-    private void updateLayoutParams(View view, Elem elem) {
-        LinearLayout.LayoutParams layoutParamsTemp=getLayoutParams(elem);
-        RelativeLayout.LayoutParams layoutParamsView= (RelativeLayout.LayoutParams) view.getLayoutParams();
-        layoutParamsView.height=layoutParamsTemp.height;
-        layoutParamsView.width=layoutParamsTemp.width;
-        layoutParamsView.topMargin=layoutParamsTemp.topMargin;
-        layoutParamsView.leftMargin=layoutParamsTemp.leftMargin;
     }
 
     private void putEmail() {
-        if(simpleBCard.getEmail()==null)
-            return;
-        Elem emailTemp=simpleBCard.getEmail().clone();
-        if(TextUtils.isEmpty(emailTemp.getText()))
-            emailTemp.setText(getResources().getString(R.string.your_email));
-        if(itvEmail==null) {
-            if(heightCard==0)
-                return;
-            itvEmail = new IconTextView(getContext());
-            itvEmail.setElem(emailTemp);
-            LayoutParams layoutParams = getLayoutParams(emailTemp);
-            vRoot.addView(itvEmail, layoutParams);
-        }else
-            itvEmail.setText(emailTemp.getText());
-        itvEmail.setVisibility(emailTemp.getHeight()==0?GONE:VISIBLE);
+        if (simpleBCard.getEmail() != null && simpleBCard.getEmail().getHeight() > 0) {
+            if (TextUtils.isEmpty(simpleBCard.getEmail().getText()))
+                simpleBCard.getEmail().setText(getResources().getString(R.string.your_email));
+            if (itvEmail == null) {
+                itvEmail = new IconTextView(getContext());
+                itvEmail.setElem(simpleBCard.getEmail());
+                vRoot.addView(itvEmail, getLayoutParams(simpleBCard.getEmail()));
+            } else
+                itvEmail.updateText(simpleBCard.getEmail().getText());
+            itvEmail.setVisibility(VISIBLE);
+        } else {
+            if (itvEmail != null)
+                itvEmail.setVisibility(GONE);
+        }
     }
 
     private void putPhoneNumber() {
-        if(heightCard==0 || simpleBCard.getWhatsApp()==null)
-            return;
-        Elem whatsAppTemp=simpleBCard.getWhatsApp().clone();
-        if(!TextUtils.isEmpty(whatsAppTemp.getText()) || !TextUtils.isEmpty(simpleBCard.getCountryCode()))
-            whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode())?simpleBCard.getCountryCode():"")+(!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText())?simpleBCard.getWhatsApp().getText():""));
-        else
-            whatsAppTemp.setText(getResources().getString(R.string.your_phone));
-        if(itvWhatsApp ==null) {
-            itvWhatsApp = new IconTextView(getContext());
-            itvWhatsApp.setElem(whatsAppTemp);
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getWhatsApp());
-            vRoot.addView(itvWhatsApp, layoutParams);
-        }else{
-            itvWhatsApp.setText(whatsAppTemp.getText());
+        if (simpleBCard.getWhatsApp() != null && simpleBCard.getWhatsApp().getHeight() > 0) {
+            Elem whatsAppTemp = simpleBCard.getWhatsApp().clone();
+            if (!TextUtils.isEmpty(whatsAppTemp.getText()) || !TextUtils.isEmpty(simpleBCard.getCountryCode()))
+                whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode()) ? simpleBCard.getCountryCode() : "") + (!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText()) ? simpleBCard.getWhatsApp().getText() : ""));
+            else
+                whatsAppTemp.setText(getResources().getString(R.string.your_phone));
+            if (itvWhatsApp == null) {
+                itvWhatsApp = new IconTextView(getContext());
+                itvWhatsApp.setElem(whatsAppTemp);
+                vRoot.addView(itvWhatsApp, getLayoutParams(simpleBCard.getWhatsApp()));
+            } else
+                itvWhatsApp.updateText((!TextUtils.isEmpty(simpleBCard.getCountryCode()) ? simpleBCard.getCountryCode() : "") + (!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText()) ? simpleBCard.getWhatsApp().getText() : ""));
+            itvWhatsApp.setVisibility(VISIBLE);
+        } else {
+            if (itvWhatsApp != null)
+                itvWhatsApp.setVisibility(GONE);
         }
-        itvWhatsApp.setVisibility(simpleBCard.getWhatsApp().getHeight()==0?GONE:VISIBLE);
     }
 
     private void putWorkPosition() {
-        if(simpleBCard.getWorkPosition()==null || (simpleBCard.getWorkPosition().getWidth()==0 && simpleBCard.getWorkPosition().getHeight()==0))
-            return;
-        if(ctvWorkPosition==null) {
-            if(heightCard==0)
-                return;
-            ctvWorkPosition = new CustomTextView(getContext());
-            ctvWorkPosition.setElem(simpleBCard.getWorkPosition());
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getWorkPosition());
-            vRoot.addView(ctvWorkPosition, layoutParams);
-        }else
-            ctvWorkPosition.updateText(simpleBCard.getWorkPosition().getText());
+        if (simpleBCard.getWorkPosition() != null && simpleBCard.getWorkPosition().getHeight() > 0) {
+            if (TextUtils.isEmpty(simpleBCard.getWorkPosition().getText()))
+                simpleBCard.getWorkPosition().setText(getResources().getString(R.string.your_work_position));
+            if (ctvWorkPosition == null) {
+                ctvWorkPosition = new CustomTextView(getContext());
+                ctvWorkPosition.setElem(simpleBCard.getWorkPosition());
+                vRoot.addView(ctvWorkPosition, getLayoutParams(simpleBCard.getWorkPosition()));
+            } else
+                ctvWorkPosition.updateText(simpleBCard.getWorkPosition().getText());
+            ctvWorkPosition.setVisibility(VISIBLE);
+        } else {
+            if (ctvWorkPosition != null)
+                ctvWorkPosition.setVisibility(GONE);
+        }
     }
 
     private void putName() {
-        if(simpleBCard.getName()==null || (simpleBCard.getName().getWidth()==0 && simpleBCard.getName().getHeight()==0))
-            return;
-        if(ctvName==null) {
-            if(heightCard==0)
-                return;
-            ctvName = new CustomTextView(getContext());
-            ctvName.setElem(simpleBCard.getName());
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getName());
-            vRoot.addView(ctvName, layoutParams);
-        }else
-            ctvName.updateText(simpleBCard.getName().getText());
+        if (simpleBCard.getName() != null && simpleBCard.getName().getHeight() > 0) {
+            if (TextUtils.isEmpty(simpleBCard.getName().getText()))
+                simpleBCard.getName().setText(getResources().getString(R.string.your_name));
+            if (ctvName == null) {
+                ctvName = new CustomTextView(getContext());
+                ctvName.setElem(simpleBCard.getName());
+                vRoot.addView(ctvName, getLayoutParams(simpleBCard.getName()));
+            } else
+                ctvName.updateText(simpleBCard.getName().getText());
+            ctvName.setVisibility(VISIBLE);
+        } else {
+            if (ctvName != null)
+                ctvName.setVisibility(GONE);
+        }
     }
 
     private void putCompanyName() {
-        if(simpleBCard.getCompanyName()==null || (simpleBCard.getCompanyName().getWidth()==0 && simpleBCard.getCompanyName().getHeight()==0))
-            return;
-        if(ctvCompany==null) {
-            if(heightCard==0)
-                return;
-            ctvCompany = new CustomTextView(getContext());
-            ctvCompany.setElem(simpleBCard.getCompanyName());
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getCompanyName());
-            vRoot.addView(ctvCompany, layoutParams);
-        }else
-            ctvCompany.updateText(simpleBCard.getCompanyName().getText());
+        if (simpleBCard.getCompanyName() != null && simpleBCard.getCompanyName().getHeight() > 0) {
+            ctvCompany.setVisibility(VISIBLE);
+            if (TextUtils.isEmpty(simpleBCard.getCompanyName().getText()))
+                simpleBCard.getCompanyName().setText(getResources().getString(R.string.your_company));
+            if (ctvCompany == null) {
+                ctvCompany = new CustomTextView(getContext());
+                vRoot.addView(ctvCompany, getLayoutParams(simpleBCard.getCompanyName()));
+                ctvCompany.setElem(simpleBCard.getCompanyName());
+            } else
+                ctvCompany.updateText(simpleBCard.getCompanyName().getText());
+            ctvCompany.setVisibility(VISIBLE);
+        } else {
+            if (ctvCompany != null)
+                ctvCompany.setVisibility(GONE);
+        }
     }
 
     private void putImage() {
-        if(simpleBCard.getLogo()==null || (simpleBCard.getLogo().getWidth()==0 && simpleBCard.getLogo().getHeight()==0)) {
-            if(ivLogo!=null)
-                Glide.with(getContext()).clear(ivLogo);
-            return;
-        }
-        if(ivLogo==null) {
-            if(heightCard==0)
-                return;
-            ivLogo = new ImageView(getContext());
-            LayoutParams layoutParams = getLayoutParams(simpleBCard.getLogo());
-            vRoot.addView(ivLogo, layoutParams);
-            Glide.with(getContext()).load(simpleBCard.getLogo().getThumbnail()).override(layoutParams.width, layoutParams.height).fitCenter().into(ivLogo);
-        }else
-            Glide.with(getContext()).load(simpleBCard.getLogo().getThumbnail()).override(ivLogo.getMeasuredWidth(), ivLogo.getMaxHeight()).fitCenter().into(ivLogo);
+        if (simpleBCard.getLogo() != null && simpleBCard.getLogo().getWidth() > 0 && simpleBCard.getLogo().getHeight() > 0) {
+            if (ivLogo == null) {
+                ivLogo = new ImageView(getContext());
+                vRoot.addView(ivLogo, getLayoutParams(simpleBCard.getLogo()));
+            }
+            Glide.with(getContext()).load(simpleBCard.getLogo().getThumbnail()).override(ivLogo.getLayoutParams().width, ivLogo.getLayoutParams().height).fitCenter().into(ivLogo);
+        }else if (ivLogo != null)
+            Glide.with(getContext()).clear(ivLogo);
     }
 
     private void putBackground() {
@@ -232,7 +227,6 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
             return;
         }
         if(URLUtil.isAssetUrl(simpleBCard.getBackgroundImage())){
-
             Glide.with(getContext()).asBitmap().load(Uri.parse(simpleBCard.getBackgroundImage())).into(new CustomTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
@@ -246,11 +240,9 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
 
                 @Override
                 public void onLoadCleared(@Nullable Drawable placeholder) {
-
                 }
             });
         }else{
-
             Glide.with(getContext()).load(simpleBCard.getBackgroundImage()).into(new CustomTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
@@ -264,10 +256,8 @@ public class BCardView extends LinearLayout implements View.OnClickListener {
 
                 @Override
                 public void onLoadCleared(@Nullable Drawable placeholder) {
-
                 }
             });
-
         }
     }
 

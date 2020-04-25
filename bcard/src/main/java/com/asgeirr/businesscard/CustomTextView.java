@@ -3,10 +3,12 @@ package com.asgeirr.businesscard;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 
 import androidx.annotation.ColorInt;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -37,6 +39,7 @@ public class CustomTextView extends AppCompatTextView {
     }
 
     private void initControl() {
+        super.setGravity(Gravity.CENTER_VERTICAL);
         super.setAutoSizeTextTypeWithDefaults(TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         super.setAutoSizeTextTypeUniformWithConfiguration(1, 300, 1, TypedValue.COMPLEX_UNIT_SP);
     }
@@ -48,13 +51,36 @@ public class CustomTextView extends AppCompatTextView {
         isItalic=elem.isItalic();
         isUnderline=elem.isUnderline();
         font =getFontFamilyFromInt(elem.getFont());
+//        updateView();
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
         updateView();
     }
 
     private void updateView() {
+        if (text == null)
+            return;
         super.setText(text);
         super.setTextColor(textColor);
         super.setTypeface(font);
+        setTextSize(getFitFontSize(getMeasuredWidth(), getMeasuredHeight(), getPaint(), font, text));
+    }
+
+    float getFitFontSize(float boundWidth, float boundHeight, Paint paint, Typeface typeface, String text) {
+        float baseTextSize = 1000000f;
+        paint.setTextSize(baseTextSize);
+        paint.setTypeface(typeface);
+        Rect rect = new Rect();
+
+        paint.getTextBounds(text, 0, text.length(), rect);
+        float sizeW = boundWidth * baseTextSize / (float) (rect.width());
+        float sizeH = boundHeight * baseTextSize / (float) (rect.height());
+
+//        return sizeW < sizeH ? sizeW : sizeH;
+        return sizeH;
     }
 
     private Typeface getFontFamilyFromInt(String fontInt) {
@@ -122,7 +148,7 @@ public class CustomTextView extends AppCompatTextView {
 
     public void updateText(String text) {
         this.text=text;
-        getLayoutParams().width=(int)(getPaint().measureText(text)+1);
+//        getLayoutParams().width=(int)(getPaint().measureText(text)+1);
         updateView();
     }
 }

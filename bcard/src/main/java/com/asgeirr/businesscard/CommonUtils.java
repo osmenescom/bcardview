@@ -9,7 +9,7 @@ public class CommonUtils {
         if(o1 instanceof Long || o2 instanceof Long){
             return (o1==null &&  ((Long) o2)==0L)|| (o2==null && ((Long) o1)==0L) || (o1!=null && o2!=null && ((Long) o1).longValue()==((Long) o2).longValue());
         } else if( o1 instanceof String || o2 instanceof String) {
-            return (o1==null && TextUtils.isEmpty((String)o2))||(TextUtils.isEmpty((String)o1) && o2==null)|| (o1!=null && ((String)o1).equals((String)o2));
+            return (o1 == null && TextUtils.isEmpty((String) o2)) || (TextUtils.isEmpty((String) o1) && o2 == null) || (o1 != null && o1.equals(o2));
         }else if( o1 instanceof Integer || o2 instanceof Integer){
             return (o1==null && ((Integer) o2)==0)|| (o2==null && ((Integer) o1)==0) || (o1!=null && o2!=null && ((Integer) o1).compareTo((Integer) o2) == 0);
         } else if( o1 instanceof Double || o2 instanceof Double){
