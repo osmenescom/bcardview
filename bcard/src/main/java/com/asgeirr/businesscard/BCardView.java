@@ -194,7 +194,6 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putCompanyName() {
         if (simpleBCard.getCompanyName() != null && simpleBCard.getCompanyName().getHeight() > 0) {
-            ctvCompany.setVisibility(VISIBLE);
             if (TextUtils.isEmpty(simpleBCard.getCompanyName().getText()))
                 simpleBCard.getCompanyName().setText(getResources().getString(R.string.your_company));
             if (ctvCompany == null) {
