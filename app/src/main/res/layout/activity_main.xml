@@ -2,47 +2,87 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/Main_vRoot"
-    tools:context="com.asgeirr.businesscard.MainActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/Main_vRoot"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.asgeirr.businesscard.example.MainActivity">
 
-        <com.asgeirr.businesscard.BCardView
-            android:id="@+id/Main_BCard1"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/Main_rvList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/background_viewpager_businesscard"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            tools:layout_height="200dp" />
 
-        <com.asgeirr.businesscard.BCardView
-            android:id="@+id/Main_BCard2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
-        <com.asgeirr.businesscard.BCardView
-            android:id="@+id/Main_BCard3"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
 
-        <com.asgeirr.businesscard.BCardView
-            android:id="@+id/Main_BCard4"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Main_tieName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Nombre" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.asgeirr.businesscard.BCardView
-            android:id="@+id/Main_BCard5"
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Main_tieWorkPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:hint="Puesto" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Main_tieWhatsApp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="WhatsApp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Main_tieEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Main_tieWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Website" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/Main_btnChange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="Cambiar"/>
-
+            android:text="Actualizar" />
     </LinearLayout>
 
 </ScrollView>

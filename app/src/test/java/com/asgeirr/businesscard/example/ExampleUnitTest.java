@@ -1,4 +1,4 @@
-package com.asgeirr.businesscard.bcard;
+package com.asgeirr.businesscard.example;
 
 import org.junit.Test;
 
