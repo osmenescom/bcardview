@@ -1,7 +1,6 @@
 package com.asgeirr.businesscard;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -62,19 +61,14 @@ public class IconTextView extends ConstraintLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//        if(getMeasuredHeight()>0)
-//            updateView();
+        if (heightMeasureSpec > 0)
+            updateView();
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
         updateView();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
     }
 
     public void setElem(Elem elem) {
@@ -86,7 +80,7 @@ public class IconTextView extends ConstraintLayout {
         font=getFontFamilyFromInt(elem.getFont());
         iconRes=getElementIcon(elem);
         iconColor=getColorFromString(elem.getIconColor());
-//        updateView();
+        updateView();
     }
 
     private void updateView() {

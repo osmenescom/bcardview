@@ -44,6 +44,13 @@ public class CustomTextView extends AppCompatTextView {
         super.setAutoSizeTextTypeUniformWithConfiguration(1, 300, 1, TypedValue.COMPLEX_UNIT_SP);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (heightMeasureSpec > 0)
+            updateView();
+    }
+
     public void setElem(Elem elem) {
         text=elem.getText();
         textColor=getColorFromString(elem.getColor());
@@ -51,7 +58,7 @@ public class CustomTextView extends AppCompatTextView {
         isItalic=elem.isItalic();
         isUnderline=elem.isUnderline();
         font =getFontFamilyFromInt(elem.getFont());
-//        updateView();
+        updateView();
     }
 
     @Override
@@ -148,7 +155,6 @@ public class CustomTextView extends AppCompatTextView {
 
     public void updateText(String text) {
         this.text=text;
-//        getLayoutParams().width=(int)(getPaint().measureText(text)+1);
         updateView();
     }
 }
