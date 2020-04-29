@@ -1,8 +1,13 @@
 package com.asgeirr.businesscard;
 
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 
-public class CommonUtils {
+import androidx.core.content.res.ResourcesCompat;
+
+class CommonUtils {
     public static boolean equals(Object o1, Object o2){
         if(o1==null && o2==null)
             return true;
@@ -22,5 +27,67 @@ public class CommonUtils {
             return (o1==null && ((Short) o2)==0)|| (o2==null && ((Short) o1)==0) || (o1!=null && o2!=null && ((Short) o1).compareTo((Short) o2) == 0);
         } else
             return o1!=null && o1.equals(o2);
+    }
+
+    public static int getColorFromString(String color) {
+        if (TextUtils.isEmpty(color) || color.length() != 6)
+            color = "000000";
+        return Color.parseColor("#" + color);
+    }
+
+    public static Typeface getFontFamilyFromInt(Context context, String fontInt, boolean isItalic, boolean isBold) {
+        Typeface font = null;
+        if (TextUtils.isEmpty(fontInt))
+            return Typeface.SANS_SERIF;
+        switch (fontInt) {
+            case "0":
+                font = ResourcesCompat.getFont(context, R.font.arial);
+                break;
+            case "1":
+                font = ResourcesCompat.getFont(context, R.font.gandhi_sans);
+                break;
+            case "2":
+                font = ResourcesCompat.getFont(context, R.font.baskerville);
+                break;
+            case "3":
+                font = ResourcesCompat.getFont(context, R.font.gill_sans);
+                break;
+            case "4":
+                font = ResourcesCompat.getFont(context, R.font.gotham);
+                break;
+            case "5":
+                font = ResourcesCompat.getFont(context, R.font.helvetica);
+                break;
+            case "6":
+                font = ResourcesCompat.getFont(context, R.font.optima);
+                break;
+            case "7":
+                font = Typeface.SANS_SERIF;
+                break;
+            case "8":
+                font = ResourcesCompat.getFont(context, R.font.times_new_roman);
+                break;
+            default:
+                font = Typeface.SANS_SERIF;
+                break;
+        }
+        font = Typeface.create(font, isBold ? (isItalic ? Typeface.BOLD_ITALIC : Typeface.BOLD) : (isItalic ? Typeface.ITALIC : Typeface.NORMAL));
+        return font;
+    }
+
+    public static int getElementIcon(int iconType) {
+        int res = -1;
+        switch (iconType) {
+            case 1:
+                res = R.drawable.ic_phone_dark_blue_24dp;
+                break;
+            case 2:
+                res = R.drawable.ic_mail_enable_24dp;
+                break;
+            case 3:
+                res = R.drawable.ic_web_dark_blue_24dp;
+                break;
+        }
+        return res;
     }
 }
