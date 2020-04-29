@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.URLUtil;
@@ -21,8 +22,6 @@ import androidx.annotation.RequiresApi;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
-
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 public class BCardView extends RelativeLayout implements View.OnClickListener {
     private SimpleBCard simpleBCard;
@@ -92,8 +91,12 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     }
 
     private void updateView() {
-        if (simpleBCard == null || widthCard == 0 || heightCard == 0)
+        if (simpleBCard == null || widthCard == 0 || heightCard == 0) {
+            if (simpleBCard != null)
+                Log.e(BCardView.class.getSimpleName(), "Not loaded ID :" + simpleBCard.getCardThumbnail());
             return;
+        }
+        Log.d(BCardView.class.getSimpleName(), "Loaded ID :" + simpleBCard.getCardThumbnail());
         putBackground();
         putImage();
         putCompanyName();
@@ -261,7 +264,9 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     }
 
     public LayoutParams getLayoutParams(Elem elem){
-        LayoutParams layoutParams= new LayoutParams(elem.getWidth()==0? WRAP_CONTENT:(int)(elem.getWidth()*widthCard)/ 100, (int)(elem.getHeight()*heightCard)/100);
+        LayoutParams layoutParams = new LayoutParams(elem.getWidth() == 0 ?
+                (widthCard - (int) (elem.getxPosition() * widthCard) / 100) :
+                (int) (elem.getWidth() * widthCard) / 100, (int) (elem.getHeight() * heightCard) / 100);
         layoutParams.leftMargin=(int)(elem.getxPosition()*widthCard)/100;
         layoutParams.topMargin=(int)(elem.getyPosition()*heightCard)/100;
         return layoutParams;
