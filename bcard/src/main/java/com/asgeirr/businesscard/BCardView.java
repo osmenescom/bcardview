@@ -152,7 +152,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evWhatsApp.setElem(whatsAppTemp);
                 vRoot.addView(evWhatsApp, getLayoutParams(simpleBCard.getWhatsApp()));
             } else
-                evWhatsApp.updateText((!TextUtils.isEmpty(simpleBCard.getCountryCode()) ? simpleBCard.getCountryCode() : "") + (!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText()) ? simpleBCard.getWhatsApp().getText() : ""));
+                evWhatsApp.updateText(whatsAppTemp.getText());
             evWhatsApp.setVisibility(VISIBLE);
         } else {
             if (evWhatsApp != null)
