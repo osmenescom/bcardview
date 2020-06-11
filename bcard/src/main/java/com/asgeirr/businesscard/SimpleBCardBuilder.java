@@ -1,17 +1,17 @@
 package com.asgeirr.businesscard;
 
 public class SimpleBCardBuilder {
-    private String backgroundImage;
-    private String cardThumbnail;
-    private SimpleElem companyName;
-    private String countryCode;
-    private SimpleElem email;
-    private SimpleElem logo;
-    private SimpleElem name;
-    private SimpleElem webSite;
-    private SimpleElem whatsApp;
-    private SimpleElem lastName;
-    private SimpleElem workPosition;
+    protected String backgroundImage;
+    protected String cardThumbnail;
+    protected SimpleElem companyName;
+    protected String countryCode;
+    protected SimpleElem email;
+    protected SimpleElem logo;
+    protected SimpleElem name;
+    protected SimpleElem webSite;
+    protected SimpleElem whatsApp;
+    protected SimpleElem lastName;
+    protected SimpleElem workPosition;
 
     public SimpleBCardBuilder setCountryCode(String countryCode) {
         this.countryCode = countryCode;

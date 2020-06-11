@@ -1,21 +1,21 @@
 package com.asgeirr.businesscard;
 
 public class SimpleElemBuilder {
-    private float angle;
-    private boolean bold;
-    private String color;
-    private String font;
-    private String fontSize;
-    private float height;
-    private String iconColor;
-    private int iconType;
-    private boolean italic;
-    private String text;
-    private String thumbnail;
-    private boolean underline;
-    private float width;
-    private float xPosition;
-    private float yPosition;
+    protected float angle;
+    protected boolean bold;
+    protected String color;
+    protected String font;
+    protected String fontSize;
+    protected float height;
+    protected String iconColor;
+    protected int iconType;
+    protected boolean italic;
+    protected String text;
+    protected String thumbnail;
+    protected boolean underline;
+    protected float width;
+    protected float xPosition;
+    protected float yPosition;
 
     public SimpleElemBuilder setText(String text) {
         this.text = text;

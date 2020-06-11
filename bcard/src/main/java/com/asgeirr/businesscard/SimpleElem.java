@@ -4,21 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class SimpleElem implements Cloneable {
-    private String text;
-    private String thumbnail;
-    private float xPosition;
-    private float yPosition;
-    private float width;
-    private float height;
-    private float angle;
-    private boolean bold;
-    private boolean italic;
-    private boolean underline;
-    private String font;
-    private String fontSize;
-    private String color;
-    private int iconType;
-    private String iconColor;
+    protected String text;
+    protected String thumbnail;
+    protected float xPosition;
+    protected float yPosition;
+    protected float width;
+    protected float height;
+    protected float angle;
+    protected boolean bold;
+    protected boolean italic;
+    protected boolean underline;
+    protected String font;
+    protected String fontSize;
+    protected String color;
+    protected int iconType;
+    protected String iconColor;
 
     public SimpleElem(String text, String thumbnail, float xPosition, float yPosition, float width, float height, float angle, boolean bold, boolean italic, boolean underline, String font, String fontSize, String color, int iconType, String iconColor) {
         this.text = text;
