@@ -90,4 +90,10 @@ class CommonUtils {
         }
         return res;
     }
+
+    public static int parseStringColor(String color) {
+        if (TextUtils.isEmpty(color))
+            color = "000000";
+        return Color.parseColor("#" + color);
+    }
 }

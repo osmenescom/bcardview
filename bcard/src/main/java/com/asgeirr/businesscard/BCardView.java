@@ -3,6 +3,7 @@ package com.asgeirr.businesscard;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -227,6 +228,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             vRoot.setBackground(null);
             return;
         }
+
         if(URLUtil.isAssetUrl(simpleBCard.getBackgroundImage())){
             Glide.with(getContext()).asBitmap().load(Uri.parse(simpleBCard.getBackgroundImage())).into(new CustomTarget<Bitmap>() {
                 @Override
@@ -243,7 +245,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 public void onLoadCleared(@Nullable Drawable placeholder) {
                 }
             });
-        }else{
+        } else if (URLUtil.isValidUrl(simpleBCard.getBackgroundImage())) {
             Glide.with(getContext()).load(simpleBCard.getBackgroundImage()).into(new CustomTarget<Drawable>() {
                 @Override
                 public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
@@ -253,6 +255,18 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 @Override
                 public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     super.onLoadFailed(errorDrawable);
+                }
+
+                @Override
+                public void onLoadCleared(@Nullable Drawable placeholder) {
+                }
+            });
+        } else {
+            int color = CommonUtils.parseStringColor(simpleBCard.getBackgroundImage());
+            Glide.with(getContext()).load(new ColorDrawable(color)).into(new CustomTarget<Drawable>() {
+                @Override
+                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                    vRoot.setBackground(resource);
                 }
 
                 @Override
