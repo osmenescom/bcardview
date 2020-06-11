@@ -1,64 +1,64 @@
 package com.asgeirr.businesscard;
 
-public class BCardBuilder {
+public class SimpleBCardBuilder {
     private String backgroundImage;
     private String cardThumbnail;
-    private Elem companyName;
+    private SimpleElem companyName;
     private String countryCode;
-    private Elem email;
-    private Elem logo;
-    private Elem name;
-    private Elem webSite;
-    private Elem whatsApp;
-    private Elem lastName;
-    private Elem workPosition;
+    private SimpleElem email;
+    private SimpleElem logo;
+    private SimpleElem name;
+    private SimpleElem webSite;
+    private SimpleElem whatsApp;
+    private SimpleElem lastName;
+    private SimpleElem workPosition;
 
-    public BCardBuilder setCountryCode(String countryCode) {
+    public SimpleBCardBuilder setCountryCode(String countryCode) {
         this.countryCode = countryCode;
         return this;
     }
 
-    public BCardBuilder setBackgroundImage(String backgroundImage) {
+    public SimpleBCardBuilder setBackgroundImage(String backgroundImage) {
         this.backgroundImage = backgroundImage;
         return this;
     }
 
-    public BCardBuilder setCardThumbnail(String cardThumbnail) {
+    public SimpleBCardBuilder setCardThumbnail(String cardThumbnail) {
         this.cardThumbnail = cardThumbnail;
         return this;
     }
 
-    public BCardBuilder setName(Elem name) {
+    public SimpleBCardBuilder setName(SimpleElem name) {
         this.name = name;
         return this;
     }
 
-    public BCardBuilder setEmail(Elem email) {
+    public SimpleBCardBuilder setEmail(SimpleElem email) {
         this.email = email;
         return this;
     }
 
-    public BCardBuilder setWhatsApp(Elem whatsApp) {
+    public SimpleBCardBuilder setWhatsApp(SimpleElem whatsApp) {
         this.whatsApp = whatsApp;
         return this;
     }
 
-    public BCardBuilder setCompanyName(Elem companyName) {
+    public SimpleBCardBuilder setCompanyName(SimpleElem companyName) {
         this.companyName = companyName;
         return this;
     }
 
-    public BCardBuilder setWebSite(Elem webSite) {
+    public SimpleBCardBuilder setWebSite(SimpleElem webSite) {
         this.webSite = webSite;
         return this;
     }
 
-    public BCardBuilder setWorkPosition(Elem workPosition) {
+    public SimpleBCardBuilder setWorkPosition(SimpleElem workPosition) {
         this.workPosition = workPosition;
         return this;
     }
 
-    public BCardBuilder setLogo(Elem logo) {
+    public SimpleBCardBuilder setLogo(SimpleElem logo) {
         this.logo = logo;
         return this;
     }

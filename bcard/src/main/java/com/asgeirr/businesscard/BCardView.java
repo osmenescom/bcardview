@@ -142,7 +142,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putPhoneNumber() {
         if (simpleBCard.getWhatsApp() != null && simpleBCard.getWhatsApp().getHeight() > 0) {
-            Elem whatsAppTemp = simpleBCard.getWhatsApp().clone();
+            SimpleElem whatsAppTemp = simpleBCard.getWhatsApp().clone();
             if (!TextUtils.isEmpty(whatsAppTemp.getText()) || !TextUtils.isEmpty(simpleBCard.getCountryCode()))
                 whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode()) ? simpleBCard.getCountryCode() : "") + (!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText()) ? simpleBCard.getWhatsApp().getText() : ""));
             else
@@ -262,12 +262,12 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         }
     }
 
-    public LayoutParams getLayoutParams(Elem elem){
-        LayoutParams layoutParams = new LayoutParams(elem.getWidth() == 0 ?
-                (widthCard - (int) (elem.getxPosition() * widthCard) / 100) :
-                (int) (elem.getWidth() * widthCard) / 100, (int) (elem.getHeight() * heightCard) / 100);
-        layoutParams.leftMargin=(int)(elem.getxPosition()*widthCard)/100;
-        layoutParams.topMargin=(int)(elem.getyPosition()*heightCard)/100;
+    public LayoutParams getLayoutParams(SimpleElem simpleElem) {
+        LayoutParams layoutParams = new LayoutParams(simpleElem.getWidth() == 0 ?
+                (widthCard - (int) (simpleElem.getxPosition() * widthCard) / 100) :
+                (int) (simpleElem.getWidth() * widthCard) / 100, (int) (simpleElem.getHeight() * heightCard) / 100);
+        layoutParams.leftMargin = (int) (simpleElem.getxPosition() * widthCard) / 100;
+        layoutParams.topMargin = (int) (simpleElem.getyPosition() * heightCard) / 100;
         return layoutParams;
     }
 }

@@ -68,14 +68,14 @@ public class ElemView extends LinearLayout {
         }
     }
 
-    public void setElem(Elem elem) {
-        text = elem.getText();
-        textColor = CommonUtils.getColorFromString(elem.getColor());
-        isUnderline = elem.isUnderline();
-        font = CommonUtils.getFontFamilyFromInt(getContext(), elem.getFont(), elem.isItalic(), elem.isBold());
-        iconRes = CommonUtils.getElementIcon(elem.getIconType());
-        iconColor = CommonUtils.getColorFromString(elem.getIconColor());
-        isUnderline = elem.isUnderline();
+    public void setElem(SimpleElem simpleElem) {
+        text = simpleElem.getText();
+        textColor = CommonUtils.getColorFromString(simpleElem.getColor());
+        isUnderline = simpleElem.isUnderline();
+        font = CommonUtils.getFontFamilyFromInt(getContext(), simpleElem.getFont(), simpleElem.isItalic(), simpleElem.isBold());
+        iconRes = CommonUtils.getElementIcon(simpleElem.getIconType());
+        iconColor = CommonUtils.getColorFromString(simpleElem.getIconColor());
+        isUnderline = simpleElem.isUnderline();
     }
 
     public void updateText(String text) {

@@ -6,20 +6,20 @@ import androidx.annotation.Nullable;
 public class SimpleBCard implements Cloneable {
     protected String backgroundImage;
     protected String cardThumbnail;
-    protected Elem companyName;
+    protected SimpleElem companyName;
     protected String countryCode;
-    protected Elem email;
+    protected SimpleElem email;
     protected int industryCode;
-    protected Elem logo;
-    protected Elem name;
-    protected Elem webSite;
-    protected Elem whatsApp;
-    protected Elem workPosition;
+    protected SimpleElem logo;
+    protected SimpleElem name;
+    protected SimpleElem webSite;
+    protected SimpleElem whatsApp;
+    protected SimpleElem workPosition;
 
     public SimpleBCard() {
     }
 
-    public SimpleBCard(String countryCode, String backgroundImage, String cardThumbnail, Elem name, Elem email, Elem whatsApp, Elem companyName, Elem webSite, Elem workPosition, Elem logo) {
+    public SimpleBCard(String countryCode, String backgroundImage, String cardThumbnail, SimpleElem name, SimpleElem email, SimpleElem whatsApp, SimpleElem companyName, SimpleElem webSite, SimpleElem workPosition, SimpleElem logo) {
         this.countryCode = countryCode;
         this.backgroundImage = backgroundImage;
         this.cardThumbnail = cardThumbnail;
@@ -48,11 +48,11 @@ public class SimpleBCard implements Cloneable {
         this.cardThumbnail = cardThumbnail;
     }
 
-    public Elem getCompanyName() {
+    public SimpleElem getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(Elem companyName) {
+    public void setCompanyName(SimpleElem companyName) {
         this.companyName = companyName;
     }
 
@@ -64,11 +64,11 @@ public class SimpleBCard implements Cloneable {
         this.countryCode = countryCode;
     }
 
-    public Elem getEmail() {
+    public SimpleElem getEmail() {
         return email;
     }
 
-    public void setEmail(Elem email) {
+    public void setEmail(SimpleElem email) {
         this.email = email;
     }
 
@@ -80,43 +80,43 @@ public class SimpleBCard implements Cloneable {
         this.industryCode = industryCode;
     }
 
-    public Elem getLogo() {
+    public SimpleElem getLogo() {
         return logo;
     }
 
-    public void setLogo(Elem logo) {
+    public void setLogo(SimpleElem logo) {
         this.logo = logo;
     }
 
-    public Elem getName() {
+    public SimpleElem getName() {
         return name;
     }
 
-    public void setName(Elem name) {
+    public void setName(SimpleElem name) {
         this.name = name;
     }
 
-    public Elem getWebSite() {
+    public SimpleElem getWebSite() {
         return webSite;
     }
 
-    public void setWebSite(Elem webSite) {
+    public void setWebSite(SimpleElem webSite) {
         this.webSite = webSite;
     }
 
-    public Elem getWhatsApp() {
+    public SimpleElem getWhatsApp() {
         return whatsApp;
     }
 
-    public void setWhatsApp(Elem whatsApp) {
+    public void setWhatsApp(SimpleElem whatsApp) {
         this.whatsApp = whatsApp;
     }
 
-    public Elem getWorkPosition() {
+    public SimpleElem getWorkPosition() {
         return workPosition;
     }
 
-    public void setWorkPosition(Elem workPosition) {
+    public void setWorkPosition(SimpleElem workPosition) {
         this.workPosition = workPosition;
     }
 

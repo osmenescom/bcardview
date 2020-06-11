@@ -3,7 +3,7 @@ package com.asgeirr.businesscard;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class Elem implements Cloneable{
+public class SimpleElem implements Cloneable {
     private String text;
     private String thumbnail;
     private float xPosition;
@@ -20,7 +20,7 @@ public class Elem implements Cloneable{
     private int iconType;
     private String iconColor;
 
-    public Elem(String text, String thumbnail, float xPosition, float yPosition, float width, float height, float angle, boolean bold, boolean italic, boolean underline, String font, String fontSize, String color, int iconType, String iconColor) {
+    public SimpleElem(String text, String thumbnail, float xPosition, float yPosition, float width, float height, float angle, boolean bold, boolean italic, boolean underline, String font, String fontSize, String color, int iconType, String iconColor) {
         this.text = text;
         this.thumbnail = thumbnail;
         this.xPosition = xPosition;
@@ -158,18 +158,18 @@ public class Elem implements Cloneable{
         this.iconColor = iconColor;
     }
 
-    public static Elem getDefault(){
-        Elem elem= new ElemBuilder().createElem();
-        elem.setFont("7");
-        elem.setColor("000000");
-        return elem;
+    public static SimpleElem getDefault() {
+        SimpleElem simpleElem = new SimpleElemBuilder().createElem();
+        simpleElem.setFont("7");
+        simpleElem.setColor("000000");
+        return simpleElem;
     }
 
     @NonNull
     @Override
-    public Elem clone() {
+    public SimpleElem clone() {
         try {
-            return (Elem) super.clone();
+            return (SimpleElem) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
             return null;
@@ -178,23 +178,23 @@ public class Elem implements Cloneable{
 
     @Override
     public boolean equals(@Nullable Object obj) {
-        if (obj == null ) return false;
-        if (!(obj instanceof Elem)) return false;
-        Elem elem = (Elem) obj;
-        return angle == elem.getAngle() &&
-                bold == elem.isBold() &&
-                CommonUtils.equals(color, elem.getColor()) &&
-                CommonUtils.equals(font, elem.getFont()) &&
-                CommonUtils.equals(fontSize, elem.getFontSize()) &&
-                height == elem.getHeight() &&
-                CommonUtils.equals(iconColor, elem.getIconColor()) &&
-                iconType == elem.getIconType() &&
-                italic == elem.isItalic() &&
-                CommonUtils.equals(text, elem.getText()) &&
-                CommonUtils.equals(thumbnail, elem.getThumbnail()) &&
-                underline == elem.isUnderline() &&
-                width == elem.getWidth() &&
-                xPosition == elem.getxPosition() &&
-                yPosition == elem.getyPosition();
+        if (obj == null) return false;
+        if (!(obj instanceof SimpleElem)) return false;
+        SimpleElem simpleElem = (SimpleElem) obj;
+        return angle == simpleElem.getAngle() &&
+                bold == simpleElem.isBold() &&
+                CommonUtils.equals(color, simpleElem.getColor()) &&
+                CommonUtils.equals(font, simpleElem.getFont()) &&
+                CommonUtils.equals(fontSize, simpleElem.getFontSize()) &&
+                height == simpleElem.getHeight() &&
+                CommonUtils.equals(iconColor, simpleElem.getIconColor()) &&
+                iconType == simpleElem.getIconType() &&
+                italic == simpleElem.isItalic() &&
+                CommonUtils.equals(text, simpleElem.getText()) &&
+                CommonUtils.equals(thumbnail, simpleElem.getThumbnail()) &&
+                underline == simpleElem.isUnderline() &&
+                width == simpleElem.getWidth() &&
+                xPosition == simpleElem.getxPosition() &&
+                yPosition == simpleElem.getyPosition();
     }
 }
