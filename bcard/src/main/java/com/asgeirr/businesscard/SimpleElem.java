@@ -20,6 +20,9 @@ public class SimpleElem implements Cloneable {
     protected int iconType;
     protected String iconColor;
 
+    public SimpleElem() {
+    }
+
     public SimpleElem(String text, String thumbnail, float xPosition, float yPosition, float width, float height, float angle, boolean bold, boolean italic, boolean underline, String font, String fontSize, String color, int iconType, String iconColor) {
         this.text = text;
         this.thumbnail = thumbnail;
