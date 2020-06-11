@@ -167,7 +167,7 @@ public class Elem implements Cloneable{
 
     @NonNull
     @Override
-    protected Elem clone() {
+    public Elem clone() {
         try {
             return (Elem) super.clone();
         } catch (CloneNotSupportedException e) {
