@@ -6,11 +6,11 @@ public class BCardBuilder {
     private Elem companyName;
     private String countryCode;
     private Elem email;
-    private Elem lastName;
     private Elem logo;
     private Elem name;
     private Elem webSite;
     private Elem whatsApp;
+    private Elem lastName;
     private Elem workPosition;
 
     public BCardBuilder setCountryCode(String countryCode) {
@@ -35,11 +35,6 @@ public class BCardBuilder {
 
     public BCardBuilder setEmail(Elem email) {
         this.email = email;
-        return this;
-    }
-
-    public BCardBuilder setLastName(Elem lastName) {
-        this.lastName = lastName;
         return this;
     }
 
@@ -69,6 +64,6 @@ public class BCardBuilder {
     }
 
     public SimpleBCard createBCard() {
-        return new SimpleBCard(countryCode, backgroundImage, cardThumbnail, name, email, lastName, whatsApp, companyName, webSite, workPosition, logo);
+        return new SimpleBCard(countryCode, backgroundImage, cardThumbnail, name, email, whatsApp, companyName, webSite, workPosition, logo);
     }
 }
