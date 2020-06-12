@@ -1,11 +1,18 @@
 package com.asgeirr.businesscard;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.core.content.res.ResourcesCompat;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 class CommonUtils {
     public static boolean equals(Object o1, Object o2){
@@ -95,5 +102,20 @@ class CommonUtils {
         if (TextUtils.isEmpty(color))
             color = "000000";
         return Color.parseColor("#" + color);
+    }
+
+    public static String saveBitmap(Bitmap bitmap, Context context, String fileName) {
+        File imagePath = null;
+        FileOutputStream fos;
+        try {
+            imagePath = File.createTempFile(fileName, ".png", context.getCacheDir());
+            fos = new FileOutputStream(imagePath);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+            return imagePath.getAbsolutePath();
+        } catch (IOException e) {
+            return "";
+        }
     }
 }

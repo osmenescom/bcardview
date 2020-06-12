@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -283,5 +284,18 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         layoutParams.leftMargin = (int) (simpleElem.getxPosition() * widthCard) / 100;
         layoutParams.topMargin = (int) (simpleElem.getyPosition() * heightCard) / 100;
         return layoutParams;
+    }
+
+    public void takeBcScreenShot(final BCCallback<String> callback) {
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap bitmap = CommonUtils.loadBitmapFromView(vRoot);
+                String path = CommonUtils.saveBitmap(bitmap, getContext(), "card");
+                if (!TextUtils.isEmpty(path)) {
+                    callback.onTakeScreenShotFinishes(path);
+                }
+            }
+        });
     }
 }

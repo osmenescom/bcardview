@@ -20,7 +20,7 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements BCardAdapter.BCardListener, TextWatcher {
+public class ViewPagerBCardActivity extends AppCompatActivity implements BCardAdapter.BCardListener, TextWatcher {
 
     private BCardView bCardView1, bCardView2, bCardView3, bCardView4, bCardView5;
     private boolean hideWebsite;
