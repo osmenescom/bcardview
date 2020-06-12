@@ -104,6 +104,14 @@ class CommonUtils {
         return Color.parseColor("#" + color);
     }
 
+    public static Bitmap loadBitmapFromView(View v) {
+        Bitmap b = Bitmap.createBitmap(v.getWidth() * 2, v.getHeight() * 2, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        c.scale(2.0f, 2.0f);
+        v.draw(c);
+        return b;
+    }
+
     public static String saveBitmap(Bitmap bitmap, Context context, String fileName) {
         File imagePath = null;
         FileOutputStream fos;

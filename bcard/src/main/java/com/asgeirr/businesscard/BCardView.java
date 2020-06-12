@@ -286,14 +286,14 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         return layoutParams;
     }
 
-    public void takeBcScreenShot(final BCCallback<String> callback) {
+    public void takeBcScreenShot(final ScreenShotCallback callback) {
         new Handler().post(new Runnable() {
             @Override
             public void run() {
                 Bitmap bitmap = CommonUtils.loadBitmapFromView(vRoot);
                 String path = CommonUtils.saveBitmap(bitmap, getContext(), "card");
                 if (!TextUtils.isEmpty(path)) {
-                    callback.onTakeScreenShotFinishes(path);
+                    callback.finish(path);
                 }
             }
         });
