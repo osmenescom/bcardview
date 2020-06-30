@@ -6,8 +6,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.asgeirr.businesscard.BCCallback;
 import com.asgeirr.businesscard.BCardView;
+import com.asgeirr.businesscard.ScreenShotCallback;
 import com.asgeirr.businesscard.SimpleBCard;
 import com.asgeirr.businesscard.SimpleBCardBuilder;
 import com.asgeirr.businesscard.SimpleElemBuilder;
@@ -26,9 +26,9 @@ public class SingleBCardActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        BCCallback<String> callback = new BCCallback<String>() {
+        ScreenShotCallback callback = new ScreenShotCallback() {
             @Override
-            public void onTakeScreenShotFinishes(String object) {
+            public void finish(String path) {
                 Log.d("", "");
             }
         };
@@ -86,7 +86,8 @@ public class SingleBCardActivity extends AppCompatActivity {
                         .setIconColor("0059C1")
                         .setFont("7")
                         .createElem())
-                .setBackgroundImage("file:///android_asset/bg_card1.png")
+//                .setBackgroundImage("file:///android_asset/bg_card1.png")
+                .setBackgroundImage("/storage/emulated/0/Download/images (1).jpeg")
                 .createBCard();
         return simpleBCard;
     }

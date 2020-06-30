@@ -2,7 +2,6 @@ package com.asgeirr.businesscard;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -22,8 +21,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+
+import java.io.File;
 
 public class BCardView extends RelativeLayout implements View.OnClickListener {
     private SimpleBCard simpleBCard;
@@ -225,56 +227,43 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     }
 
     private void putBackground() {
-        if(TextUtils.isEmpty(simpleBCard.getBackgroundImage())) {
+        if (TextUtils.isEmpty(simpleBCard.getBackgroundImage())) {
             vRoot.setBackground(null);
             return;
         }
-
-        if(URLUtil.isAssetUrl(simpleBCard.getBackgroundImage())){
-            Glide.with(getContext()).asBitmap().load(Uri.parse(simpleBCard.getBackgroundImage())).into(new CustomTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    vRoot.setBackground(new BitmapDrawable(getResources(), resource));
-                }
-
-                @Override
-                public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                    super.onLoadFailed(errorDrawable);
-                }
-
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-                }
-            });
+        RequestBuilder<Drawable> requestBuilder = Glide.with(getContext()).asDrawable();
+        File file = new File(simpleBCard.getBackgroundImage());
+        if (file.exists()) {
+            requestBuilder = requestBuilder.load(new File(simpleBCard.getBackgroundImage()));
+        } else if (URLUtil.isAssetUrl(simpleBCard.getBackgroundImage())) {
+            requestBuilder = requestBuilder.load(Uri.parse(simpleBCard.getBackgroundImage()));
         } else if (URLUtil.isValidUrl(simpleBCard.getBackgroundImage())) {
-            Glide.with(getContext()).load(simpleBCard.getBackgroundImage()).into(new CustomTarget<Drawable>() {
-                @Override
-                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                    vRoot.setBackground(resource);
-                }
-
-                @Override
-                public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                    super.onLoadFailed(errorDrawable);
-                }
-
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-                }
-            });
-        } else {
-            int color = CommonUtils.parseStringColor(simpleBCard.getBackgroundImage());
-            Glide.with(getContext()).load(new ColorDrawable(color)).into(new CustomTarget<Drawable>() {
-                @Override
-                public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-                    vRoot.setBackground(resource);
-                }
-
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
-                }
-            });
+            requestBuilder = requestBuilder.load(simpleBCard.getBackgroundImage());
+        } else if (simpleBCard.getBackgroundImage().matches("\\d*")) {
+            int color;
+            try {
+                color = CommonUtils.parseStringColor(simpleBCard.getBackgroundImage());
+            } catch (Exception e) {
+                color = CommonUtils.parseStringColor("FFF");
+            }
+            requestBuilder = requestBuilder.load(new ColorDrawable(color));
         }
+        requestBuilder.into(new CustomTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                vRoot.setBackground(resource);
+            }
+
+            @Override
+            public void onLoadCleared(@Nullable Drawable placeholder) {
+
+            }
+
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                super.onLoadFailed(errorDrawable);
+            }
+        });
     }
 
     public LayoutParams getLayoutParams(SimpleElem simpleElem) {
