@@ -86,10 +86,10 @@ class CommonUtils {
         int res = -1;
         switch (iconType) {
             case 1:
-                res = R.drawable.ic_phone_dark_blue_24dp;
+                res = R.drawable.ic_whatsapp_blue_24dp;
                 break;
             case 2:
-                res = R.drawable.ic_mail_enable_24dp;
+                res = R.drawable.ic_mail_blue_24dp;
                 break;
             case 3:
                 res = R.drawable.ic_web_dark_blue_24dp;

@@ -87,7 +87,7 @@ public class SingleBCardActivity extends AppCompatActivity {
                         .setFont("7")
                         .createElem())
 //                .setBackgroundImage("file:///android_asset/bg_card1.png")
-                .setBackgroundImage("/storage/emulated/0/Download/images (1).jpeg")
+//                .setBackgroundImage("/storage/emulated/0/Download/images (1).jpeg")
                 .createBCard();
         return simpleBCard;
     }
