@@ -10,6 +10,8 @@ import android.view.View;
 
 import androidx.core.content.res.ResourcesCompat;
 
+import com.google.gson.GsonBuilder;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -125,5 +127,9 @@ class CommonUtils {
         } catch (IOException e) {
             return "";
         }
+    }
+
+    public static <T> String toJson(T object) {
+        return object == null ? null : new GsonBuilder().create().toJson(object, object.getClass());
     }
 }

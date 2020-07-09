@@ -58,20 +58,23 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     private void init(Context context){
         LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.layout_bcard_view, this);
-        vRoot=findViewById(R.id.BusinessCardView_vRoot);
+        vRoot = findViewById(R.id.BusinessCardView_vRoot);
+        Log.d("BCardView", "init view");
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         widthCard =vRoot.getMeasuredWidth();
-        heightCard=vRoot.getMeasuredHeight();
+        heightCard = vRoot.getMeasuredHeight();
+        Log.d("BCardView", String.format("onMeasure: w:%d h:%d", widthMeasureSpec, heightMeasureSpec));
         updateView();
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        Log.d("BCardView", "onFinishInflate");
         updateView();
     }
 
@@ -79,7 +82,8 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         widthCard =vRoot.getMeasuredWidth();
-        heightCard=vRoot.getMeasuredHeight();
+        heightCard = vRoot.getMeasuredHeight();
+        Log.d("BCardView", String.format("onMeasure: w:%d h:%d Oldw:%d Oldh%d", w, h, oldw, oldh));
         updateView();
     }
 
@@ -90,16 +94,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     public void load(SimpleBCard simpleBCard){
         this.simpleBCard = simpleBCard;
+        Log.d("BCardView", "load");
         updateView();
     }
 
     private void updateView() {
         if (simpleBCard == null || widthCard == 0 || heightCard == 0) {
-            if (simpleBCard != null)
-                Log.e(BCardView.class.getSimpleName(), "Not loaded ID :" + simpleBCard.getCardThumbnail());
+            Log.d("BCardView", String.format("updateView: Can't update view ", simpleBCard == null ? "Object is null" : widthCard == 0 ? "widthView is 0" : heightCard == 0 ? "height View is 0" : "unknown"));
             return;
         }
-        Log.d(BCardView.class.getSimpleName(), "Loaded ID :" + simpleBCard.getCardThumbnail());
         putBackground();
         putImage();
         putCompanyName();
@@ -114,6 +117,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         if (simpleBCard.getWebSite() != null && simpleBCard.getWebSite().getHeight() > 0) {
             if (TextUtils.isEmpty(simpleBCard.getWebSite().getText()))
                 simpleBCard.getWebSite().setText(getResources().getString(R.string.your_website));
+            Log.d("BCardView", String.format("Loading webSite %s", CommonUtils.toJson(simpleBCard.getWebSite())));
             if (evWebSite == null) {
                 evWebSite = new ElemView(getContext());
                 evWebSite.setElem(simpleBCard.getWebSite());
@@ -122,6 +126,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evWebSite.updateText(simpleBCard.getWebSite().getText());
             evWebSite.setVisibility(VISIBLE);
         } else {
+            Log.d("BCardView", String.format("Can't loading webSite %s", simpleBCard.getWebSite() == null ? "null" : CommonUtils.toJson(simpleBCard.getWebSite())));
             if (evWebSite != null)
                 evWebSite.setVisibility(GONE);
         }
@@ -131,6 +136,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         if (simpleBCard.getEmail() != null && simpleBCard.getEmail().getHeight() > 0) {
             if (TextUtils.isEmpty(simpleBCard.getEmail().getText()))
                 simpleBCard.getEmail().setText(getResources().getString(R.string.your_email));
+            Log.d("BCardView", String.format("Loading email %s", CommonUtils.toJson(simpleBCard.getEmail())));
             if (evEmail == null) {
                 evEmail = new ElemView(getContext());
                 evEmail.setElem(simpleBCard.getEmail());
@@ -139,6 +145,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evEmail.updateText(simpleBCard.getEmail().getText());
             evEmail.setVisibility(VISIBLE);
         } else {
+            Log.d("BCardView", String.format("Can't loading email %s", simpleBCard.getEmail() == null ? "null" : CommonUtils.toJson(simpleBCard.getEmail())));
             if (evEmail != null)
                 evEmail.setVisibility(GONE);
         }
@@ -151,6 +158,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode()) ? simpleBCard.getCountryCode() : "") + (!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText()) ? simpleBCard.getWhatsApp().getText() : ""));
             else
                 whatsAppTemp.setText(getResources().getString(R.string.your_phone));
+            Log.d("BCardView", String.format("Loading whatsApp %s", CommonUtils.toJson(simpleBCard.getWhatsApp())));
             if (evWhatsApp == null) {
                 evWhatsApp = new ElemView(getContext());
                 evWhatsApp.setElem(whatsAppTemp);
@@ -159,6 +167,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evWhatsApp.updateText(whatsAppTemp.getText());
             evWhatsApp.setVisibility(VISIBLE);
         } else {
+            Log.d("BCardView", String.format("Can't loading whatsApp %s", simpleBCard.getWhatsApp() == null ? "null" : CommonUtils.toJson(simpleBCard.getWhatsApp())));
             if (evWhatsApp != null)
                 evWhatsApp.setVisibility(GONE);
         }
@@ -168,6 +177,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         if (simpleBCard.getWorkPosition() != null && simpleBCard.getWorkPosition().getHeight() > 0) {
             if (TextUtils.isEmpty(simpleBCard.getWorkPosition().getText()))
                 simpleBCard.getWorkPosition().setText(getResources().getString(R.string.your_work_position));
+            Log.d("BCardView", String.format("Loading workPosition %s", CommonUtils.toJson(simpleBCard.getWorkPosition())));
             if (evWorkPosition == null) {
                 evWorkPosition = new ElemView(getContext());
                 evWorkPosition.setElem(simpleBCard.getWorkPosition());
@@ -176,6 +186,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evWorkPosition.updateText(simpleBCard.getWorkPosition().getText());
             evWorkPosition.setVisibility(VISIBLE);
         } else {
+            Log.d("BCardView", String.format("Can't loading workPosition %s", simpleBCard.getWorkPosition() == null ? "null" : CommonUtils.toJson(simpleBCard.getWorkPosition())));
             if (evWorkPosition != null)
                 evWorkPosition.setVisibility(GONE);
         }
@@ -185,6 +196,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         if (simpleBCard.getName() != null && simpleBCard.getName().getHeight() > 0) {
             if (TextUtils.isEmpty(simpleBCard.getName().getText()))
                 simpleBCard.getName().setText(getResources().getString(R.string.your_name));
+            Log.d("BCardView", String.format("Loading name %s", CommonUtils.toJson(simpleBCard.getName())));
             if (evName == null) {
                 evName = new ElemView(getContext());
                 evName.setElem(simpleBCard.getName());
@@ -193,6 +205,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evName.updateText(simpleBCard.getName().getText());
             evName.setVisibility(VISIBLE);
         } else {
+            Log.d("BCardView", String.format("Can't loading name %s", simpleBCard.getName() == null ? "null" : CommonUtils.toJson(simpleBCard.getName())));
             if (evName != null)
                 evName.setVisibility(GONE);
         }
@@ -202,6 +215,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         if (simpleBCard.getCompanyName() != null && simpleBCard.getCompanyName().getHeight() > 0) {
             if (TextUtils.isEmpty(simpleBCard.getCompanyName().getText()))
                 simpleBCard.getCompanyName().setText(getResources().getString(R.string.your_company));
+            Log.d("BCardView", String.format("Loading companyName %s", CommonUtils.toJson(simpleBCard.getCompanyName())));
             if (evCompany == null) {
                 evCompany = new ElemView(getContext());
                 vRoot.addView(evCompany, getLayoutParams(simpleBCard.getCompanyName()));
@@ -210,6 +224,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 evCompany.updateText(simpleBCard.getCompanyName().getText());
             evCompany.setVisibility(VISIBLE);
         } else {
+            Log.d("BCardView", String.format("Can't loading companyName %s", simpleBCard.getCompanyName() == null ? "null" : CommonUtils.toJson(simpleBCard.getCompanyName())));
             if (evCompany != null)
                 evCompany.setVisibility(GONE);
         }
@@ -222,15 +237,20 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 vRoot.addView(ivLogo, getLayoutParams(simpleBCard.getLogo()));
             }
             Glide.with(getContext()).load(simpleBCard.getLogo().getThumbnail()).override(ivLogo.getLayoutParams().width, ivLogo.getLayoutParams().height).fitCenter().into(ivLogo);
-        }else if (ivLogo != null)
+            Log.d("BCardView", String.format("Loading logo %s", CommonUtils.toJson(simpleBCard.getLogo())));
+        } else if (ivLogo != null) {
             Glide.with(getContext()).clear(ivLogo);
+            Log.d("BCardView", String.format("Can't loading logo %s", simpleBCard.getLogo() == null ? "null" : CommonUtils.toJson(simpleBCard.getLogo())));
+        }
     }
 
     private void putBackground() {
         if (TextUtils.isEmpty(simpleBCard.getBackgroundImage())) {
             vRoot.setBackground(null);
+            Log.d("BCardView", "Can't loading background, its empty");
             return;
         }
+        Log.d("BCardView", String.format("Loading background %s", simpleBCard.getBackgroundImage()));
         RequestBuilder<Drawable> requestBuilder = Glide.with(getContext()).asDrawable();
         File file = new File(simpleBCard.getBackgroundImage());
         if (file.exists()) {
