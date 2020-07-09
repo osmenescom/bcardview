@@ -2,6 +2,7 @@ package com.asgeirr.businesscard;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -65,10 +66,16 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthCard =vRoot.getMeasuredWidth();
+        widthCard = vRoot.getMeasuredWidth();
         heightCard = vRoot.getMeasuredHeight();
         Log.d("BCardView", String.format("onMeasure: w:%d h:%d", widthMeasureSpec, heightMeasureSpec));
         updateView();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Log.d("BCardView", String.format("onDraw: w:%d h:%d", vRoot.getMeasuredWidth(), vRoot.getMeasuredHeight()));
     }
 
     @Override
@@ -81,9 +88,9 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        widthCard =vRoot.getMeasuredWidth();
+        widthCard = vRoot.getMeasuredWidth();
         heightCard = vRoot.getMeasuredHeight();
-        Log.d("BCardView", String.format("onMeasure: w:%d h:%d Oldw:%d Oldh%d", w, h, oldw, oldh));
+        Log.d("BCardView", String.format("onSizeChanged: w:%d h:%d Oldw:%d Oldh%d", w, h, oldw, oldh));
         updateView();
     }
 
@@ -100,7 +107,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void updateView() {
         if (simpleBCard == null || widthCard == 0 || heightCard == 0) {
-            Log.d("BCardView", String.format("updateView: Can't update view ", simpleBCard == null ? "Object is null" : widthCard == 0 ? "widthView is 0" : heightCard == 0 ? "height View is 0" : "unknown"));
+            Log.d("BCardView", String.format("updateView: Can't update view %s", simpleBCard == null ? "Object is null" : widthCard == 0 ? "widthView is 0" : heightCard == 0 ? "height View is 0" : "unknown"));
             return;
         }
         putBackground();
