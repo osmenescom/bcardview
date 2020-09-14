@@ -284,7 +284,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             requestBuilder = requestBuilder.load(Uri.parse(simpleBCard.getBackgroundImage()));
         } else if (URLUtil.isValidUrl(simpleBCard.getBackgroundImage())) {
             requestBuilder = requestBuilder.load(simpleBCard.getBackgroundImage());
-        } else if (simpleBCard.getBackgroundImage().matches("\\d*")) {
+        } else if (simpleBCard.getBackgroundImage().matches("([A-Fa-f0-9]){6}")) {
             int color;
             try {
                 color = CommonUtils.parseStringColor(simpleBCard.getBackgroundImage());
@@ -292,7 +292,8 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
                 color = CommonUtils.parseStringColor("FFF");
             }
             requestBuilder = requestBuilder.load(new ColorDrawable(color));
-        }
+        } else
+            return;
         requestBuilder.override(getMeasuredWidth(), getMeasuredHeight()).into(new CustomTarget<Drawable>() {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
