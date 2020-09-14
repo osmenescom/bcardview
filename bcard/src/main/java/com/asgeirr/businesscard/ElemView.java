@@ -59,7 +59,8 @@ public class ElemView extends LinearLayout {
         }
         if (tvText == null) {
             tvText = new TextView(getContext());
-            LayoutParams layoutParams = new LayoutParams((getMeasuredWidth() - (ivIcon == null ? 0 : ivIcon.getLayoutParams().width + ((LayoutParams) ivIcon.getLayoutParams()).rightMargin)) - (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()), getMeasuredHeight());
+            int width = (getMeasuredWidth() - (ivIcon == null ? 0 : ivIcon.getLayoutParams().width + ((LayoutParams) ivIcon.getLayoutParams()).rightMargin)) - (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics());
+            LayoutParams layoutParams = new LayoutParams(Math.max(width, 0), getMeasuredHeight());
             addView(tvText, layoutParams);
             tvText.setTextColor(textColor);
             tvText.setTypeface(font);

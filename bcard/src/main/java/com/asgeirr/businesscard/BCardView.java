@@ -68,7 +68,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         widthCard = vRoot.getMeasuredWidth();
         heightCard = vRoot.getMeasuredHeight();
-        Log.d("BCardView", String.format("onMeasure: w:%d h:%d", widthMeasureSpec, heightMeasureSpec));
+        Log.d("BCardView", String.format("onMeasure: wMs:%d hMs:%d w%d h%d", widthMeasureSpec, heightMeasureSpec, widthCard, heightCard));
         updateView();
     }
 
@@ -120,6 +120,10 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         putWebSite();
     }
 
+    private String layoutParamsToString(LayoutParams layoutParams) {
+        return String.format("w:%d h:%d l:%d t:%d", layoutParams.width, layoutParams.height, layoutParams.leftMargin, layoutParams.topMargin);
+    }
+
     private void putWebSite() {
         if (simpleBCard.getWebSite() != null && simpleBCard.getWebSite().getHeight() > 0) {
             if (TextUtils.isEmpty(simpleBCard.getWebSite().getText()))
@@ -128,7 +132,10 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             if (evWebSite == null) {
                 evWebSite = new ElemView(getContext());
                 evWebSite.setElem(simpleBCard.getWebSite());
-                vRoot.addView(evWebSite, getLayoutParams(simpleBCard.getWebSite()));
+                evWebSite.setRotation(simpleBCard.getWebSite().getAngle());
+                LayoutParams layoutParams = getLayoutParams(simpleBCard.getWebSite());
+                vRoot.addView(evWebSite, layoutParams);
+                Log.d("BCardView", String.format("set webSite position %s", layoutParamsToString(layoutParams)));
             } else
                 evWebSite.updateText(simpleBCard.getWebSite().getText());
             evWebSite.setVisibility(VISIBLE);
@@ -147,7 +154,10 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             if (evEmail == null) {
                 evEmail = new ElemView(getContext());
                 evEmail.setElem(simpleBCard.getEmail());
-                vRoot.addView(evEmail, getLayoutParams(simpleBCard.getEmail()));
+                evEmail.setRotation(simpleBCard.getEmail().getAngle());
+                LayoutParams layoutParams = getLayoutParams(simpleBCard.getEmail());
+                vRoot.addView(evEmail, layoutParams);
+                Log.d("BCardView", String.format("set email position %s", layoutParamsToString(layoutParams)));
             } else
                 evEmail.updateText(simpleBCard.getEmail().getText());
             evEmail.setVisibility(VISIBLE);
@@ -169,6 +179,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             if (evWhatsApp == null) {
                 evWhatsApp = new ElemView(getContext());
                 evWhatsApp.setElem(whatsAppTemp);
+                evWhatsApp.setRotation(simpleBCard.getWhatsApp().getAngle());
                 vRoot.addView(evWhatsApp, getLayoutParams(simpleBCard.getWhatsApp()));
             } else
                 evWhatsApp.updateText(whatsAppTemp.getText());
@@ -188,6 +199,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             if (evWorkPosition == null) {
                 evWorkPosition = new ElemView(getContext());
                 evWorkPosition.setElem(simpleBCard.getWorkPosition());
+                evWorkPosition.setRotation(simpleBCard.getWorkPosition().getAngle());
                 vRoot.addView(evWorkPosition, getLayoutParams(simpleBCard.getWorkPosition()));
             } else
                 evWorkPosition.updateText(simpleBCard.getWorkPosition().getText());
@@ -207,7 +219,11 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             if (evName == null) {
                 evName = new ElemView(getContext());
                 evName.setElem(simpleBCard.getName());
-                vRoot.addView(evName, getLayoutParams(simpleBCard.getName()));
+                LayoutParams layoutParams = getLayoutParams(simpleBCard.getName());
+                vRoot.addView(evName, layoutParams);
+//                evName.setPivotX(layoutParams.height/2);
+//                evName.setPivotY(layoutParams.width/2);
+                evName.setRotation(simpleBCard.getName().getAngle());
             } else
                 evName.updateText(simpleBCard.getName().getText());
             evName.setVisibility(VISIBLE);
@@ -225,6 +241,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             Log.d("BCardView", String.format("Loading companyName %s", CommonUtils.toJson(simpleBCard.getCompanyName())));
             if (evCompany == null) {
                 evCompany = new ElemView(getContext());
+                evCompany.setRotation(simpleBCard.getCompanyName().getAngle());
                 vRoot.addView(evCompany, getLayoutParams(simpleBCard.getCompanyName()));
                 evCompany.setElem(simpleBCard.getCompanyName());
             } else
@@ -241,6 +258,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
         if (simpleBCard.getLogo() != null && simpleBCard.getLogo().getWidth() > 0 && simpleBCard.getLogo().getHeight() > 0) {
             if (ivLogo == null) {
                 ivLogo = new ImageView(getContext());
+                ivLogo.setRotation(simpleBCard.getLogo().getAngle());
                 vRoot.addView(ivLogo, getLayoutParams(simpleBCard.getLogo()));
             }
             Glide.with(getContext()).load(simpleBCard.getLogo().getThumbnail()).override(ivLogo.getLayoutParams().width, ivLogo.getLayoutParams().height).fitCenter().into(ivLogo);
