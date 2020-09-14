@@ -293,7 +293,7 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             }
             requestBuilder = requestBuilder.load(new ColorDrawable(color));
         }
-        requestBuilder.into(new CustomTarget<Drawable>() {
+        requestBuilder.override(getMeasuredWidth(), getMeasuredHeight()).into(new CustomTarget<Drawable>() {
             @Override
             public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
                 vRoot.setBackground(resource);
