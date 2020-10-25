@@ -126,8 +126,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putWebSite() {
         if (simpleBCard.getWebSite() != null && simpleBCard.getWebSite().getHeight() > 0) {
-            if (TextUtils.isEmpty(simpleBCard.getWebSite().getText()))
-                simpleBCard.getWebSite().setText(getResources().getString(R.string.your_website));
+            if (TextUtils.isEmpty(simpleBCard.getWebSite().getText())) {
+                if (simpleBCard.isDummy())
+                    simpleBCard.getWebSite().setText(getResources().getString(R.string.your_website));
+                else {
+                    if (evWebSite != null)
+                        evWebSite.setVisibility(GONE);
+                    return;
+                }
+            }
             Log.d("BCardView", String.format("Loading webSite %s", CommonUtils.toJson(simpleBCard.getWebSite())));
             if (evWebSite == null) {
                 evWebSite = new ElemView(getContext());
@@ -148,8 +155,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putEmail() {
         if (simpleBCard.getEmail() != null && simpleBCard.getEmail().getHeight() > 0) {
-            if (TextUtils.isEmpty(simpleBCard.getEmail().getText()))
-                simpleBCard.getEmail().setText(getResources().getString(R.string.your_email));
+            if (TextUtils.isEmpty(simpleBCard.getEmail().getText())) {
+                if (simpleBCard.isDummy())
+                    simpleBCard.getEmail().setText(getResources().getString(R.string.your_email));
+                else {
+                    if (evEmail != null)
+                        evEmail.setVisibility(GONE);
+                    return;
+                }
+            }
             Log.d("BCardView", String.format("Loading email %s", CommonUtils.toJson(simpleBCard.getEmail())));
             if (evEmail == null) {
                 evEmail = new ElemView(getContext());
@@ -173,8 +187,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
             SimpleElem whatsAppTemp = simpleBCard.getWhatsApp().clone();
             if (!TextUtils.isEmpty(whatsAppTemp.getText()) || !TextUtils.isEmpty(simpleBCard.getCountryCode()))
                 whatsAppTemp.setText((!TextUtils.isEmpty(simpleBCard.getCountryCode()) ? simpleBCard.getCountryCode() : "") + (!TextUtils.isEmpty(simpleBCard.getWhatsApp().getText()) ? simpleBCard.getWhatsApp().getText() : ""));
-            else
-                whatsAppTemp.setText(getResources().getString(R.string.your_phone));
+            else {
+                if (simpleBCard.isDummy())
+                    whatsAppTemp.setText(getResources().getString(R.string.your_phone));
+                else {
+                    if (evWhatsApp != null)
+                        evWhatsApp.setVisibility(GONE);
+                    return;
+                }
+            }
             Log.d("BCardView", String.format("Loading whatsApp %s", CommonUtils.toJson(simpleBCard.getWhatsApp())));
             if (evWhatsApp == null) {
                 evWhatsApp = new ElemView(getContext());
@@ -193,8 +214,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putWorkPosition() {
         if (simpleBCard.getWorkPosition() != null && simpleBCard.getWorkPosition().getHeight() > 0) {
-            if (TextUtils.isEmpty(simpleBCard.getWorkPosition().getText()))
-                simpleBCard.getWorkPosition().setText(getResources().getString(R.string.your_work_position));
+            if (TextUtils.isEmpty(simpleBCard.getWorkPosition().getText())) {
+                if (simpleBCard.isDummy())
+                    simpleBCard.getWorkPosition().setText(getResources().getString(R.string.your_work_position));
+                else {
+                    if (evWorkPosition != null)
+                        evWorkPosition.setVisibility(GONE);
+                    return;
+                }
+            }
             Log.d("BCardView", String.format("Loading workPosition %s", CommonUtils.toJson(simpleBCard.getWorkPosition())));
             if (evWorkPosition == null) {
                 evWorkPosition = new ElemView(getContext());
@@ -213,8 +241,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putName() {
         if (simpleBCard.getName() != null && simpleBCard.getName().getHeight() > 0) {
-            if (TextUtils.isEmpty(simpleBCard.getName().getText()))
-                simpleBCard.getName().setText(getResources().getString(R.string.your_name));
+            if (TextUtils.isEmpty(simpleBCard.getName().getText())) {
+                if (simpleBCard.isDummy) {
+                    simpleBCard.getName().setText(getResources().getString(R.string.your_name));
+                } else {
+                    if (evName != null)
+                        evName.setVisibility(GONE);
+                    return;
+                }
+            }
             Log.d("BCardView", String.format("Loading name %s", CommonUtils.toJson(simpleBCard.getName())));
             if (evName == null) {
                 evName = new ElemView(getContext());
@@ -236,8 +271,15 @@ public class BCardView extends RelativeLayout implements View.OnClickListener {
 
     private void putCompanyName() {
         if (simpleBCard.getCompanyName() != null && simpleBCard.getCompanyName().getHeight() > 0) {
-            if (TextUtils.isEmpty(simpleBCard.getCompanyName().getText()))
-                simpleBCard.getCompanyName().setText(getResources().getString(R.string.your_company));
+            if (TextUtils.isEmpty(simpleBCard.getCompanyName().getText())) {
+                if (simpleBCard.isDummy())
+                    simpleBCard.getCompanyName().setText(getResources().getString(R.string.your_company));
+                else {
+                    if (evCompany != null)
+                        evCompany.setVisibility(GONE);
+                    return;
+                }
+            }
             Log.d("BCardView", String.format("Loading companyName %s", CommonUtils.toJson(simpleBCard.getCompanyName())));
             if (evCompany == null) {
                 evCompany = new ElemView(getContext());

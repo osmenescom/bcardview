@@ -10,6 +10,7 @@ public class SimpleBCard implements Cloneable {
     protected String countryCode;
     protected SimpleElem email;
     protected int industryCode;
+    protected boolean isDummy;
     protected SimpleElem logo;
     protected SimpleElem name;
     protected SimpleElem webSite;
@@ -78,6 +79,14 @@ public class SimpleBCard implements Cloneable {
 
     public void setIndustryCode(int industryCode) {
         this.industryCode = industryCode;
+    }
+
+    public boolean isDummy() {
+        return isDummy;
+    }
+
+    public void setDummy(boolean dummy) {
+        isDummy = dummy;
     }
 
     public SimpleElem getLogo() {
